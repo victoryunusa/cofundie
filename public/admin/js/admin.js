@@ -1,3 +1,4 @@
+"use strict";
 function getTotalCustomers() {
     let url = $("#get-customers-url").val();
     $.ajax({

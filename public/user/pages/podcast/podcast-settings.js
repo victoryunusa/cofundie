@@ -1,3 +1,4 @@
+"use strict";
 // Upload temporary Image
 FilePond.registerPlugin(
     FilePondPluginFileValidateSize,

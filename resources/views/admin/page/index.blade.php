@@ -83,6 +83,7 @@
 @endsection
 @push('script')
     <script>
+        "use strict";
         $(document).on('click', '.copyLinkBtn',function () {
             const url = $(this).data('id');
             if (navigator.clipboard && window.isSecureContext) {

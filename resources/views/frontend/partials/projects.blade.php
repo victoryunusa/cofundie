@@ -68,12 +68,6 @@
                     </div>
                 </div>
                 @endforeach
-
-                {{-- <div class="col-span-12 mb-50">
-                    <div class="button-area- text-center">
-                        <a class="hero-btn font-medium" href="{{ route('frontend.properties.index') }}">View All</a>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

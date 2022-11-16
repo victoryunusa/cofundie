@@ -32,7 +32,7 @@
                                 <th>{{ __("Action") }}</th>
                             </tr>
                             </thead>
-                            <tbody class="list" style="min-height: 200px">
+                            <tbody class="list min-h-200">
                             @foreach($tickets as $ticket)
                                 <tr>
                                     <td>{{ $ticket->subject }}</td>

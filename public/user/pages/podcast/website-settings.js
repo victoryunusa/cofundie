@@ -1,3 +1,4 @@
+"use strict";
 let coverImg = document.getElementById('old_cover').value;
 let source = coverImg ? [{source: coverImg}] : null;
 

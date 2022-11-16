@@ -256,6 +256,7 @@
     <script src="{{ asset('frontend/js/apex-custom.js') }}"></script>
     <script src="{{ asset('frontend/js/components.js') }}"></script>
     <script>
+        "use strict";
         getStatistics();
     </script>
 @endpush

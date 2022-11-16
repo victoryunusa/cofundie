@@ -833,3 +833,11 @@ input.form-input.footer:focus {
     }
 }
 
+.site-header.single {
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.custom-svg {
+    width: 64px; height: auto; margin: auto;
+}

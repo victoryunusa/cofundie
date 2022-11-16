@@ -24,7 +24,7 @@
         </div>
     </form>
     <div class="ticket-divider"></div>
-<div class="overflow-auto comments" style="max-height: 500px">
+<div class="overflow-auto comments max-h-500">
     @foreach($meta as $item)
         <div class="ticket-header">
             <div class="ticket-sender-picture img-shadow">
@@ -70,6 +70,7 @@
 @endif
 
 <script>
+    "use strict";
     $('#status').select2();
     $('.comments').animate({ scrollTop: 9999 }, 'slow');
     $(document).on('change', '#status', function () {

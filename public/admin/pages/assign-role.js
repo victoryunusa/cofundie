@@ -1,4 +1,5 @@
-$(document).ready(function () {
+"use strict";
+$(document).on('ready',function () {
     setTimeout(function () {
         let url = $('#searchUrl').val();
         $("#user").select2({

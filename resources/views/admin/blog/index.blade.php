@@ -23,8 +23,6 @@
                         </div>
                     </div>
                 </div>
-
-
                <div class="clearfix mb-3"></div>
                <div class="table-responsive">
                   <table class="table table-striped">

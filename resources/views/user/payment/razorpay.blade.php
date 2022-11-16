@@ -39,6 +39,7 @@
 @push('script')
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        "use strict";
         /*------------------------------
                     Razorpay Intergration
                 --------------------------------*/

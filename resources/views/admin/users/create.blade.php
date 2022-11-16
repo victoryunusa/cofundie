@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <h4>{{ __('Create User') }}</h4>
                 </div>
-                <div class="card-body overflow-auto" style="max-height: 600px">
+                <div class="card-body overflow-auto max-h-600">
                     <form method="POST" action="{{ route('admin.users.store') }}" class="ajaxform_with_redirect">
                         @csrf
                         <div class="form-group">
@@ -58,6 +58,7 @@
 
 @push('script')
     <script>
+        "use strict";
         $('#plan').on('change.select2', function(e){
             var id = $(this).val();
 

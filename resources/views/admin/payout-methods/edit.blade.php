@@ -69,14 +69,14 @@
                         </div>
                         <!--- Transaction Charge Fixed --->
                         <div class="form-row">
-                            <div class="transaction_fixed col-sm-12" style="display: none;" >
+                            <div class="transaction_fixed col-sm-12 d-none" >
                                 <div class="form-group">
                                     <label>Fixed Amount</label>
                                     <input type="number" class="form-control" value="{{$payoutmethod->fixed_charge}}" name="fixed_charge" placeholder="Fixed Amount">
                                 </div>
                             </div>
                             <!--- Transaction Charge percentage --->
-                            <div class="transaction_percentage col-sm-12" style="display: none;" >
+                            <div class="transaction_percentage col-sm-12 d-none" >
                                 <div class="form-group">
                                     <label>Percentage Amount</label>
                                     <input type="number" class="form-control" value="{{$payoutmethod->percent_charge}}" name="percent_charge" placeholder="Percentage Amount">
@@ -189,6 +189,7 @@
     <script src="{{ asset('plugins/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
     <script>
+        "use strict";
         $( document ).ready(function() {
             let charge_type = $('#charge_type').val()
             if(charge_type == 'fixed'){

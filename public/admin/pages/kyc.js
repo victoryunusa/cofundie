@@ -1,4 +1,5 @@
-$(document).ready(function () {
+"use strict";
+$(document).on('ready',function () {
     $('.repeater').repeater({
         initEmpty: true,
         defaultValues: {

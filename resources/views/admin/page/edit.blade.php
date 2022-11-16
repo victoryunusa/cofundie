@@ -89,6 +89,6 @@
 @endsection
 
 @push('script')
-        <script src="{{ asset('plugins/summernote/summernote-bs4.js') }}"></script>
-        <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
-   @endpush
+    <script src="{{ asset('plugins/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
+@endpush

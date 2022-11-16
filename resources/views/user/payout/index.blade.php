@@ -60,10 +60,3 @@
     </div>
 @endsection
 
-@push('css')
-    <style>
-        .custom-border {
-            border-radius: 1.5rem !important;
-        }
-    </style>
-@endpush

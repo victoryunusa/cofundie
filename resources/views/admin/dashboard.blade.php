@@ -324,6 +324,7 @@
 @push('script')
     <script src="{{ asset('admin/js/admin.js') }}"></script>
     <script>
+        "use strict";
         getAdminDashboardData()
     </script>
 @endpush

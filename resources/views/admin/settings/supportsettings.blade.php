@@ -99,6 +99,7 @@
     <script src="{{ asset('admin/custom/media.js ') }}"></script>
     <script src="{{ asset('admin/plugins/jqueryrepeater/jquery.repeater.min.js') }}"></script>
     <script>
+        "use strict";
         $(document).ready(function () {
             $('.repeater').repeater({
                 initEmpty: true,

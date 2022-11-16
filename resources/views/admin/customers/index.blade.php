@@ -167,6 +167,7 @@
 @push('script')
     <script src="{{ asset('admin/js/admin.js') }}"></script>
     <script>
+        "use strict";
         getTotalCustomers()
     </script>
 @endpush

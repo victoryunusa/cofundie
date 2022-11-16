@@ -32,8 +32,7 @@
                     <div class="col-span-12 md:col-span-6 lg:col-span-4">
                         <div class="single-invest-card bg-gray-100 py-12 px-10 rounded-lg text-center mb-50">
                             <div class="invest-icon mb-4">
-                                <svg version="1.1" viewBox="0 0 65 63" class="svg-icon svg-fill"
-                                    style="width: 64px; height: auto; margin: auto;">
+                                <svg version="1.1" viewBox="0 0 65 63" class="svg-icon svg-fill" class="custom-svg">
                                     <defs>
                                         <pattern id="svgicon_text-bubble_b" width="4.973" height="4.973" x="-4.973"
                                             y="-4.973" patternUnits="userSpaceOnUse">
@@ -77,8 +76,7 @@
                     <div class="col-span-12 md:col-span-6 lg:col-span-4">
                         <div class="single-invest-card bg-gray-100 py-12 px-10 rounded-lg text-center mb-50">
                             <div class="invest-icon mb-4">
-                                <svg version="1.1" viewBox="0 0 63 68" class="svg-icon svg-fill"
-                                    style="width: 64px; height: auto; margin: auto;">
+                                <svg version="1.1" viewBox="0 0 63 68" class="svg-icon svg-fill custom-svg">
                                     <defs>
                                         <pattern id="svgicon_target_d" width="5.037" height="5.037" x="-5.037" y="-2.676"
                                             patternUnits="userSpaceOnUse">
@@ -143,8 +141,7 @@
                     <div class="col-span-12 md:col-span-6 lg:col-span-4">
                         <div class="single-invest-card bg-gray-100 py-12 px-10 rounded-lg text-center mb-50">
                             <div class="invest-icon mb-4">
-                                <svg version="1.1" viewBox="0 0 65 63" class="svg-icon svg-fill"
-                                    style="width: 64px; height: auto; margin: auto;">
+                                <svg version="1.1" viewBox="0 0 65 63" class="svg-icon svg-fill custom-svg">
                                     <defs>
                                         <pattern id="svgicon_text-bubble_b" width="4.973" height="4.973" x="-4.973"
                                             y="-4.973" patternUnits="userSpaceOnUse">

@@ -28,7 +28,7 @@
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => Route::is('user.dashboard.index')]) href="{{ route('user.dashboard.index') }}">
                             <i class="fas fa-home"></i>
-                            <span class="nav-link-text">{{ __('Dashboards') }}</span>
+                            <span class="nav-link-text">{{ __('Dashboard') }}</span>
                         </a>
                     </li>
                     <li class="nav-item">

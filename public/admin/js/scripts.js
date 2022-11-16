@@ -137,7 +137,7 @@ $(function() {
     minHeight: $(window).outerHeight() - 108
   })
 
-  $(".nav-collapse-toggle").click(function() {
+  $(".nav-collapse-toggle").on('click',function() {
     $(this).parent().find('.navbar-nav').toggleClass('show');
     return false;
   });
@@ -184,7 +184,7 @@ $(function() {
     }
   }
 
-  $("[data-toggle='sidebar']").click(function() {
+  $("[data-toggle='sidebar']").on('click',function() {
     var body = $("body"),
       w = $(window);
 
@@ -307,7 +307,7 @@ $(function() {
   toggleLayout();
   $(window).resize(toggleLayout);
 
-  $("[data-toggle='search']").click(function() {
+  $("[data-toggle='search']").on('click',function() {
     var body = $("body");
 
     if(body.hasClass('search-gone')) {
@@ -400,7 +400,7 @@ $(function() {
         follow_text = 'Follow',
         unfollow_text = 'Following';
 
-    me.click(function() {
+    me.on('click',function() {
       if(me.hasClass('following-btn')) {
         me.removeClass('btn-danger');
         me.removeClass('following-btn');
@@ -425,7 +425,7 @@ $(function() {
     var me = $(this),
         target = me.data('dismiss');
 
-    me.click(function() {
+    me.on('click',function() {
       $(target).fadeOut(function() {
         $(target).remove();
       });
@@ -438,7 +438,7 @@ $(function() {
     var me = $(this),
         target = me.data('collapse');
 
-    me.click(function() {
+    me.on('click',function() {
       $(target).collapse('toggle');
       $(target).on('shown.bs.collapse', function(e) {
         e.stopPropagation();
@@ -489,7 +489,7 @@ $(function() {
   $("[data-tab]").each(function() {
     var me = $(this);
 
-    me.click(function() {
+    me.on('click',function() {
       if(!me.hasClass('active')) {
         var tab_group = $('[data-tab-group="' + me.data('tab') + '"]'),
             tab_group_active = $('[data-tab-group="' + me.data('tab') + '"].active'),
@@ -519,7 +519,7 @@ $(function() {
   $(".alert-dismissible").each(function() {
     var me = $(this);
 
-    me.find('.close').click(function() {
+    me.find('.close').on('click',function() {
       me.alert('close');
     });
   });
@@ -537,7 +537,7 @@ $(function() {
   });
 
   // Slide Toggle
-  $('[data-toggle-slide]').click(function() {
+  $('[data-toggle-slide]').on('click',function() {
     let target = $(this).data('toggle-slide');
 
     $(target).slideToggle();
@@ -545,7 +545,7 @@ $(function() {
   });
 
   // Dismiss modal
-  $("[data-dismiss=modal]").click(function() {
+  $("[data-dismiss=modal]").on('click',function() {
     $(this).closest('.modal').modal('hide');
 
     return false;

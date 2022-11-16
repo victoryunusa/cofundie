@@ -68,14 +68,14 @@
                         </div>
                         <!--- Transaction Charge Fixed --->
                         <div class="form-row">
-                            <div class="transaction_fixed col-sm-12" style="display: none;">
+                            <div class="transaction_fixed col-sm-12 d-none">
                                 <div class="form-group">
                                     <label>{{ __('Fixed Amount') }}</label>
                                     <input type="number" class="form-control" name="fixed_charge" placeholder="Fixed Amount">
                                 </div>
                             </div>
                             <!--- Transaction Charge percentage --->
-                            <div class="transaction_percentage col-sm-12" style="display: none;">
+                            <div class="transaction_percentage col-sm-12 d-none">
                                 <div class="form-group">
                                     <label>{{ __('Percentage Amount') }}</label>
                                     <input type="number" class="form-control" name="percent_charge" placeholder="Percentage Amount">
@@ -181,6 +181,7 @@
     <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
 
     <script>
+        "use strict";
         var x = 0; //Initial field counter is 1
         var count = 1;
         var maxField = 10; //Input fields increment limitation

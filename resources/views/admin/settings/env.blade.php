@@ -919,8 +919,7 @@
 @endsection
 @section('script')
 
-<script type="text/javascript">
- "use strict";
+<script>
  (function ($) {
     "use strict"
 

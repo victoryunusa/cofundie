@@ -257,7 +257,7 @@
 
                         <div class="form-group">
                             <label for="message" class="required">{{ __('Message') }}</label>
-                            <textarea name="message" id="message" class="form-control" style="height: 150px" placeholder="{{ __('Enter message') }}" required></textarea>
+                            <textarea name="message" id="message" class="form-control h-150" placeholder="{{ __('Enter message') }}" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

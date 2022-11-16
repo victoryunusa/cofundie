@@ -19,7 +19,7 @@
                                     <label for="card-element">
                                         {{ __('Credit or debit card') }}
                                     </label>
-                                    <div id="card-element" style="width: 100%">
+                                    <div id="card-element" class="w-100p">
                                         <!-- A Stripe Element will be inserted here. -->
                                     </div>
                                     <!-- Used to display form errors. -->
@@ -42,6 +42,7 @@
 @push('script')
     <script src="https://js.stripe.com/v3/"></script>
     <script>
+        "use strict";
         var stripe_key = $('#publishable_key').val();
         var publishable_key = stripe_key;
         // Create a Stripe client.

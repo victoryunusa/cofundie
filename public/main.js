@@ -1,3 +1,5 @@
+"use strict";
+
 //Variables & Standalone functions
 
 function printable(id) {
@@ -123,7 +125,7 @@ let drawDataTable = function () {
     $('.dataTable').DataTable().draw(false);
 }
 
-$(document).ready(function () {
+$(document).on('ready',function () {
     if (localStorage.getItem('hasMessage') == "true"){
         Notify.success(null, localStorage.getItem('message'))
         localStorage.removeItem('hasMessage');
@@ -231,7 +233,7 @@ function numOrdDesc(a, b) {
                 options.placeholder = element.getAttribute('data-placeholder');
             }
 
-            $(document).ready(function (){
+            $(document).on('ready',function (){
                 $(element).select2(options);
             });
         });
@@ -558,7 +560,7 @@ function numOrdDesc(a, b) {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
 
-    $(document).click(function() {
+    $(document).on('click',function() {
         let charge_type = $('#charge_type').val()
         if (charge_type == 'fixed') {
             $('.transaction_fixed').addClass('d-block')

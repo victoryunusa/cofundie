@@ -58,7 +58,7 @@
                 @csrf
                 @if($requests->count() > 0)
                     <div class="float-left">
-                        <button class="btn btn-danger btn-lg basicbtn mass-delete-btn" id="submit-button" style="display: none;">
+                        <button class="btn btn-danger btn-lg basicbtn mass-delete-btn d-none" id="submit-button">
                             <i class="fas fa-trash"></i>
                             {{ __('Delete') }}
                         </button>

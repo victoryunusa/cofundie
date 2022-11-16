@@ -282,6 +282,7 @@
     <script src="{{ asset('plugins/chatjs/Chart.min.js') }}"></script>
     <script src="{{ asset('admin/js/admin.js') }}"></script>
     <script>
+        "use strict";
         getUserDashboardData()
     </script>
 @endpush

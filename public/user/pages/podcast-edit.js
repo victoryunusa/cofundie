@@ -1,3 +1,4 @@
+"use strict";
 let oldImage = document.getElementById('oldImage').value;
 let source = !oldImage ? null : [{ source:oldImage }];
 

@@ -127,6 +127,7 @@
 
 @push('script')
     <script>
+        "use strict";
         setText();
         $('#currency').on('change', function(){
             setText()

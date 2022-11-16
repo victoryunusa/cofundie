@@ -43,6 +43,7 @@
             bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/Bolt-Logo-e14421724859591.png"></script>
     @endif
     <script>
+        "use strict";
         launchBOLT();
 
         function launchBOLT() {

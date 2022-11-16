@@ -1,7 +1,7 @@
 //
 // Google maps
 //
-
+"use strict";
 var $map = $('#map-default'),
     map,
     lat,

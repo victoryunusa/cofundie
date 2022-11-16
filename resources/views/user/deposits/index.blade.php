@@ -205,6 +205,7 @@
 @push('script')
     <script src="{{ asset('user/js/card-data.js') }}"></script>
     <script>
+        "use strict";
         getTotalDeposits()
     </script>
 @endpush

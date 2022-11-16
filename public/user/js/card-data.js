@@ -1,3 +1,4 @@
+"use strict";
 function getTotalDeposits() {
     let url = $("#get-deposits-url").val();
     $.ajax({

@@ -53,7 +53,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body overflow-auto repeaters" data-repeater-list="fields" style="max-height: 588px; height: 588px">
+                    <div class="card-body overflow-auto repeaters max-h-588" data-repeater-list="fields">
                         @if($kycMethod->fields > 0)
                             @foreach($kycMethod->fields as $field)
                                 <div class="form-group" data-repeater-item>

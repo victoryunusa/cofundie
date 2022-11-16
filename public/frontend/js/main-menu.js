@@ -1,4 +1,4 @@
-
+"use strict";
 
  const menu = document.querySelector(".menu-block");
  const menuMain = menu.querySelector(".site-menu-main");
@@ -19,13 +19,13 @@
 
 
  menuMain.addEventListener("click", (e) =>{
-    
+
  	if(!menu.classList.contains("active")){
  		return;
  	}
    if(e.target.closest(".nav-item-has-children")){
         const hasChildren = e.target.closest(".nav-item-has-children");
-        
+
       showSubMenu(hasChildren);
    }
  });
@@ -38,8 +38,8 @@
         document.getElementById(lastItem).style.animation = "slideRight 0.5s ease forwards";
         menu.querySelector(".current-menu-title").innerHTML = lastItemText;
         setTimeout(() =>{
-            document.getElementById(lastItem).classList.remove("active");	
-        },300); 
+            document.getElementById(lastItem).classList.remove("active");
+        },300);
     }
     if(subMenuArray.length == 0){
         menu.querySelector(".mobile-menu-head").classList.remove("active");
@@ -68,7 +68,7 @@
     subMenu.style.animation = "slideLeft 0.5s ease forwards";
     const menuTitle = hasChildren.querySelector(".drop-trigger").textContent;
     subMenuTextArray.push(menuTitle);
-    
+
     menu.querySelector(".current-menu-title").innerHTML = menuTitle;
     menu.querySelector(".mobile-menu-head").classList.add("active");
  }
@@ -135,5 +135,5 @@
 
 
 
- 
+
 

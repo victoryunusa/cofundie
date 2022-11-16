@@ -128,14 +128,6 @@
     </div>
 @endsection
 
-@push('css')
-    <style>
-        td {
-            padding: unset!important;
-        }
-    </style>
-@endpush
-
 @push('script')
     <script src="{{ asset('admin/js/admin.js') }}"></script>
 @endpush

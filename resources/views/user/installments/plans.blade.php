@@ -223,6 +223,7 @@
 @push('script')
 @if (request('trigger') == 'invest-modal')
 <script>
+    "use strict";
     $('#invest-modal').modal('show')
 </script>
 @endif

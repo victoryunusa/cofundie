@@ -247,6 +247,7 @@
     <script src="{{ asset('plugins/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
     <script>
+        "use strict";
         $('.myEditor_icon').iconpicker();
     </script>
     @include('admin.projects.project-js')

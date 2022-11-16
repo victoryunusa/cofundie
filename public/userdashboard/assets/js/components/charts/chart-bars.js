@@ -1,7 +1,7 @@
 //
 // Bars chart
 //
-
+"use strict";
 var BarsChart = (function() {
 
 	//

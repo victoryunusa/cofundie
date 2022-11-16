@@ -1,4 +1,5 @@
 <script>
+    "use strict";
     var count = {{ is_array($project->meta->value['icon'] ?? 0) ? count($project->meta->value['icon']) : 1 }};;
     var wrapper = $('.field_wrapper');
 
