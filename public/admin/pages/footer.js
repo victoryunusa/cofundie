@@ -1,5 +1,5 @@
 "use strict";
-$(document).on('ready',function () {
+
     $('.repeater').repeater({
         initEmpty: true,
         defaultValues: {
@@ -20,7 +20,7 @@ $(document).on('ready',function () {
         },
         isFirstItemUndeletable: false
     })
-});
+
 
 $(document).on('keyup', '.icon_class', function () {
     let _class = $(this).val();

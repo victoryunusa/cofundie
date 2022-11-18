@@ -52,7 +52,22 @@ class PayoutMethodController extends Controller
             'fixed_charge' => ['nullable', 'gt:0'],
             'percent_charge' => ['nullable', 'between:0,100'],
             'instruction' => ['required', 'string'],
+            'charge_type' => ['required', 'in:fixed,percentage'],
         ]);
+
+        if($request->charge_type == 'fixed')
+        {
+            $request->validate([
+                'fixed_charge' => ['required', 'gt:0'],
+            ]);
+        }
+
+        if($request->charge_type == 'percentage')
+        {
+            $request->validate([
+                'percent_charge' => ['required', 'between:0,100'],
+            ]);
+        }
 
         $data = json_encode($request->inputs);
         PayoutMethod::create($request->all() + [

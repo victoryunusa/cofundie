@@ -125,22 +125,22 @@ let drawDataTable = function () {
     $('.dataTable').DataTable().draw(false);
 }
 
-$(document).on('ready',function () {
-    if (localStorage.getItem('hasMessage') == "true"){
-        Notify.success(null, localStorage.getItem('message'))
-        localStorage.removeItem('hasMessage');
-        localStorage.removeItem('message');
-    }
 
-    var liContents = [];
-    $('.sidebar-menu li').each(function() {
-        liContents.push($(this).data('order'));
-    });
-    liContents.sort(numOrdDesc);
-    $('.sidebar-menu li').each(function() {
-        $(this).html(liContents.pop());
-    });
+if (localStorage.getItem('hasMessage') == "true"){
+    Notify.success(null, localStorage.getItem('message'))
+    localStorage.removeItem('hasMessage');
+    localStorage.removeItem('message');
+}
+
+var liContents = [];
+$('.sidebar-menu li').each(function() {
+    liContents.push($(this).data('order'));
 });
+liContents.sort(numOrdDesc);
+$('.sidebar-menu li').each(function() {
+    $(this).html(liContents.pop());
+});
+
 
 function numOrdDesc(a, b) {
     return (parseInt(b) - parseInt(a));

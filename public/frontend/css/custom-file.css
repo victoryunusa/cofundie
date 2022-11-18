@@ -420,8 +420,7 @@ p {
     top: 0;
     left: 0;
     z-index: -1;
-    opacity: 0.85;
-    background: linear-gradient(to top, #111, rgb(2 21 63 / 20%));
+    opacity: .7;
 }
 
 .breadcrumb-text p {
@@ -532,14 +531,14 @@ p {
 
 
 .property-image-me {
-    height: 300px;
+    height: 250px;
     position: relative;
     z-index: 99;
     border-radius: 15px 15px 0 0;
 }
 
 .property-image-me.bg-overlay::after {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0 !important;
 }
 
 
@@ -620,6 +619,7 @@ a.free-btn:hover {
     box-shadow: 0px 4px 24px 0px rgb(89 39 227 / 10%);
     background-color: #fff;
     transition-duration: 500ms;
+    border-radius: 15px;
 }
 
 .single-property-card:hover {
@@ -710,6 +710,8 @@ input.form-input.footer:focus {
 
 .blog-image img {
     transition-duration: 900ms;
+    height: 352px;
+    object-fit: cover;
 }
 
 .single-blog-card:hover .blog-image img {
@@ -840,4 +842,9 @@ input.form-input.footer:focus {
 
 .custom-svg {
     width: 64px; height: auto; margin: auto;
+}
+
+.property-image img {
+    height: 244px;
+    object-fit: cover;
 }

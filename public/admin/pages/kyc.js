@@ -1,5 +1,5 @@
 "use strict";
-$(document).on('ready',function () {
+
     $('.repeater').repeater({
         initEmpty: true,
         defaultValues: {
@@ -19,4 +19,4 @@ $(document).on('ready',function () {
         },
         isFirstItemUndeletable: true
     })
-});
+

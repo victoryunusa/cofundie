@@ -182,6 +182,32 @@
 
     <script>
         "use strict";
+
+
+        $( document ).ready(function() {
+            let charge_type = $('#charge_type').val()
+            if(charge_type == 'fixed'){
+                $('.transaction_fixed').addClass('d-block')
+                $('.transaction_percentage').removeClass('d-block')
+            }
+            if(charge_type == 'percentage' ){
+                $('.transaction_fixed').removeClass('d-block')
+                $('.transaction_percentage').addClass('d-block')
+            }
+        });
+        $( document ).click(function() {
+             let charge_type = $('#charge_type').val()
+            if(charge_type == 'fixed'){
+                $('.transaction_fixed').addClass('d-block')
+                $('.transaction_percentage').removeClass('d-block')
+            }
+            if(charge_type == 'percentage' ){
+                $('.transaction_fixed').removeClass('d-block')
+                $('.transaction_percentage').addClass('d-block')
+            }
+        });
+
+
         var x = 0; //Initial field counter is 1
         var count = 1;
         var maxField = 10; //Input fields increment limitation

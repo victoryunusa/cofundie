@@ -160,7 +160,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 amount">-</h5>
+                                            <h5 class="text-lg mb-1 amount">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 max-profit">-</h5>
+                                            <h5 class="text-lg mb-1 max-profit">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +182,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 min-profit">-</h5>
+                                            <h5 class="text-lg mb-1 min-profit">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 min-loss">-</h5>
+                                            <h5 class="text-lg mb-1 min-loss">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 max-loss">-</h5>
+                                            <h5 class="text-lg mb-1 max-loss">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                                         </div>
 
                                         <div class="po-bottom-card">
-                                            <h5 class="text-lg mb-1 total">-</h5>
+                                            <h5 class="text-lg mb-1 total">0</h5>
                                         </div>
                                     </div>
                                 </div>

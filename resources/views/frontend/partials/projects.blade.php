@@ -14,53 +14,41 @@
 
             <div class="grid grid-cols-12 sm:gap-7 md:gap-8">
                 <!-- Single Card -->
+
+
                 @foreach ($data['projects'] as $project)
                 <div class="col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3">
                     <div class="single-property-card rounded-b-lg mb-20">
                         <div class="property-image relative">
-                            <div class="property-image-me bg-overlay" style="background-image:url({{ asset($project->thumbnail ?? 'frontend/img/bg-img/9.avif') }})">
-                                <a class="absolute bottom-6 mb-2 z-99 left-2 text-white text-sm font-normal" href="{{ route('frontend.properties.show', $project->slug) }}">{{ $project->title }}</a>
-                                <p class="absolute bottom-1 pb-2 left-2 text-white text-xs font-normal"><i class="fas fa-location-arrow text-xs mr-1"></i> {{ $project->address }}</p>
-                            </div>
-
+                            <a href="{{ route('frontend.properties.show', $project->slug) }}"> <img class="rounded-t-lg relative" src="{{ asset($project->thumbnail ?? 'frontend/img/bg-img/9.avif') }}" alt=""></a>
+                            {{-- <a class="absolute bottom-1 z-10 left-1 text-white text-sm font-normal" href="{{ route('frontend.properties.show', $project->slug) }}">{{ $project->title }}</a> --}}
                         </div>
                         <div class="property-content-text py-6 px-4">
-                            <div class="property-footer border-b-2 pt-4">
-                                <div class="flex justify-between items-center">
-                                    <div class="po-bottom-card mb-3">
-                                        <h5 class="text-lg mb-1">{{ __('Minimum') }}</h5>
-                                        <p class="text-violet-800">{{ currency_format($project->min_invest) }}</span></p>
-                                    </div>
-
-                                    <div class="po-bottom-card text-right mb-3">
-                                        <h5 class="text-lg mb-1">{{ __('Maximum') }}</h5>
-                                        <p class="text-violet-800">{{ currency_format($project->max_invest) }}</p>
-                                    </div>
-                                </div>
+                            <h4 class="text-2xl mb-2 text-violet-800">{{ currency_format($project->min_invest) }}</h4>
+                            <p class="text-sm text-gray-500">
+                                @foreach ($project->meta->value['icon'] ?? '' as $key => $icon)
+                                <span class="border-r-2 pr-2 border-t-zinc-700 border-spacing-7"><i class="{{ $icon }}"></i> {{ $project->meta->value['item'][$key] }}</span>
+                                @endforeach
+                            <div class="pro-tag-area mt-3 border-b-2 border-gray-200 pb-4">
+                                <a class="text-sm font-bold text-violet-800 mr-2" href="{{ url('user/invests/plans') }}">Invest Today</a>
+                                <a class="text-sm font-bold text-green-600 mr-2" href="{{ url('user/invests/plans') }}">Invest Using Balence</a>
+                                <a class="text-sm font-bold text-red-600" href="{{ url('/contact') }}">Contact Us</a>
                             </div>
-                            <div class="property-footer pt-4 border-b-2 pb-3">
-                                <div class="flex justify-between items-center">
-                                    <div class="po-bottom-card mb-3">
-                                        <h5 class="text-lg mb-1">{{ __('Profit Range') }}</h5>
-                                        <p class="text-green-600">{{ $project->profit_range }} <span>({{ $project->invest_type ? '%':'Fixed' }})</span></p>
-                                    </div>
 
-                                    <div class="po-bottom-card mb-3 text-right">
-                                        <h5 class="text-lg mb-1">{{ __('Loss Range') }}</h5>
-                                        <p class="text-red-600">{{ $project->loss_range }} <span>({{ $project->invest_type ? '%':'Fixed' }})</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="property-footer pt-4 pb-3">
+                            <div class="property-footer pt-4">
                                 <div class="flex justify-between items-center">
                                     <div class="po-bottom-card">
-                                        <h5 class="text-lg mb-1">{{ __('Return For') }}</h5>
-                                        <p class="text-red-600">{{ $project->is_period ? ucfirst($project->period_duration) : "Lifetime" }}</span></p>
+                                        <h5 class="text-lg mb-1">{{ $project->profit_range }}<span>{{ $project->invest_type ? '%':' (Fixed)' }}</span></h5>
+                                        <p class="text-xs uppercase">{{ __('Profit Range') }}</p>
                                     </div>
 
-                                    <div class="po-bottom-card text-right">
-                                        <h5 class="text-lg mb-1">{{ __('Capital Back') }}</h5>
-                                        <p class="text-green-600">{{ $project->capital_back ? 'Yes':'No' }}</span></p>
+                                    <div class="po-bottom-card">
+                                        <h5 class="text-lg mb-1 text-violet-800">{{ $project->is_period ? ucfirst($project->period_duration) : "Lifetime" }}</h5>
+                                        <p class="text-xs uppercase">{{ __('Return For') }}</p>
+                                    </div>
+                                    <div class="po-bottom-card">
+                                        <h5 class="text-lg mb-1 text-orange-400">{{ $project->capital_back ? 'Yes':'No' }}</h5>
+                                        <p class="text-xs uppercase">{{ __('Capital Back') }}</p>
                                     </div>
                                 </div>
                             </div>

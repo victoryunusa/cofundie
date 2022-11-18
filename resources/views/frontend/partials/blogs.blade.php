@@ -23,8 +23,8 @@
                             <img class="rounded-lg" src="{{ $post->preview ? asset($post->preview->value ?? null) : asset('admin/img/img/placeholder.png')}}" alt="">
                         </div>
                         <p class="mb-3 text-violet-800">{{ __('Date') }}: {{ formatted_date($post->created_at) }}</p>
-                        <h4 class="text-3xl mb-3">{{ str($post->title)->words(7, '...') }}</h4>
-                        <p class="mb-3">{{ str($post->description->value ?? null)->words(16, '...') }}</p>
+                        <h4 class="text-3xl mb-3">{{ str($post->title)->words(10, '...') }}</h4>
+                        <p class="mb-3">{!! str($post->description->value ?? null)->words(20, '...') !!}</p>
                         <a class="def-btn mt-5 font-medium" href="{{ route('frontend.blogs.show', $post->slug) }}">{{ __('Read More') }}</a>
                     </div>
                 </div>
