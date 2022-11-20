@@ -38,15 +38,11 @@ class EnvController extends Controller
          $APP_NAME = Str::slug($request->APP_NAME);
 $txt ="APP_NAME=".$APP_NAME."
 APP_ENV=local
-APP_KEY=base64:DEH3s8auaZCRp4SkM2Vs5xevQ1+ptrkR/TOJ7jmYSoQ=
+APP_KEY=base64:4bJgqF84pmtw3yxCywF+3hT2x9atO28O0RFq1ZTjkA8=
 APP_DEBUG=".$request->APP_DEBUG."
 APP_URL=".url('/')."
-SITE_KEY=".env('SITE_KEY')."
-AUTHORIZED_KEY=".env('AUTHORIZED_KEY')."
 
 CONTENT_EDITOR=".$request->CONTENT_EDITOR."
-ANALYTICS_VIEW_ID=".$request->ANALYTICS_VIEW_ID."
-GA_MEASUREMENT_ID=".$request->GA_MEASUREMENT_ID."
 
 DB_CONNECTION=".env("DB_CONNECTION")."
 DB_HOST=".env("DB_HOST")."
@@ -54,8 +50,6 @@ DB_PORT=".env("DB_PORT")."
 DB_DATABASE=".env("DB_DATABASE")."
 DB_USERNAME=".env("DB_USERNAME")."
 DB_PASSWORD=".env("DB_PASSWORD")."
-
-
 
 QUEUE_MAIL=".$request->QUEUE_MAIL."
 MAIL_MAILER=".$request->MAIL_MAILER."
@@ -73,9 +67,6 @@ MAIL_DRIVER_TYPE='".$request->MAIL_DRIVER_TYPE."'
 MAILCHIMP_APIKEY=".$request->MAILCHIMP_APIKEY."
 MAILCHIMP_LIST_ID=".$request->MAILCHIMP_LIST_ID."
 
-NOCAPTCHA_SECRET=".$request->NOCAPTCHA_SECRET."
-NOCAPTCHA_SITEKEY=".$request->NOCAPTCHA_SITEKEY."
-
 BROADCAST_DRIVER=".$request->BROADCAST_DRIVER."
 CACHE_DRIVER=".$request->CACHE_DRIVER."
 QUEUE_CONNECTION=".$request->QUEUE_CONNECTION."
@@ -84,13 +75,9 @@ SESSION_LIFETIME=".$request->SESSION_LIFETIME."
 
 STORAGE_TYPE=public
 
-DISCUSS_COMMENT_KEY=".$request->DISCUSS_COMMENT_KEY."
-
 LOG_CHANNEL=stack
 LOG_LEVEL=debug
-TIMEZONE=".$request->TIMEZONE."
-DEFAULT_LANG=".$request->DEFAULT_LANG."
-
+DEFAULT_LANG=en
 ";
 
   File::put(base_path('.env'),$txt);

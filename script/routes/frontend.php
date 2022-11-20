@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CronController;
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\Installer\InstallerController;
 
 Auth::routes(['verify' => true]);
 Route::get('temp-episode/{episode}', [CommonController::class, 'tempEpisode'])->name('temp-episode');
@@ -32,4 +33,25 @@ Route::group(['as' => 'frontend.', 'namespace' => 'App\Http\Controllers\Frontend
 Route::group(['prefix' => 'cron', 'as' => 'cron.'], function (){
     Route::get('invest/profit-loss', [CronController::class, 'profitLoss'])->name('invest.profit-loss');
     Route::get('before-expire-7-days', [CronController::class, 'beforeExpireSevenDay'])->name('before-expire-seven-day');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Installer Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['namespace'=>'Installer'],function(){
+	Route::get('install',[InstallerController::class,'index'])->name('install');
+	Route::get('install/info',[InstallerController::class,'configuration'])->name('install.configuration');
+	Route::get('install/verify',[InstallerController::class,'verify'])->name('install.verify');
+	Route::post('verify_check',[InstallerController::class,'verify_check'])->name('install.verify_check');
+	Route::get('install/complete',[InstallerController::class,'complete'])->name('install.complete');
+	Route::post('install/store',[InstallerController::class,'send'])->name('install.store');
+	Route::get('install/check',[InstallerController::class,'check'])->name('install.check');
+	Route::get('install/migrate',[InstallerController::class,'migrate'])->name('install.migrate');
+	Route::get('install/seed',[InstallerController::class,'seed'])->name('install.seed');
+    Route::get('404',function(){
+        return abort(404);
+    });
 });

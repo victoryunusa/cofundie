@@ -8,11 +8,22 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
+use DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        try {
+            DB::connection()->getPdo();
+                if(DB::connection()->getDatabaseName()){
+
+                }else{
+                return redirect()->route('install');
+                }
+        } catch (\Exception $e) {
+            return redirect()->route('install');
+        }
         //Set SEO
         $seoOption = get_option('seo_home', true);
 

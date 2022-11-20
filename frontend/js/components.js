@@ -12,7 +12,7 @@ try {
 
 
 // Accordion
-instanceMap = new Map();
+// instanceMap = new Map();
 
 class InstanceData {
     static set(componentName, element, instance){

@@ -420,7 +420,8 @@ p {
     top: 0;
     left: 0;
     z-index: -1;
-    opacity: .7;
+    opacity: .5;
+    background: black;
 }
 
 .breadcrumb-text p {
@@ -847,4 +848,13 @@ input.form-input.footer:focus {
 .property-image img {
     height: 244px;
     object-fit: cover;
+}
+
+.invest-icon svg {
+    height: 70px;
+}
+
+.invest-icon {
+    display: flex;
+    justify-content: center;
 }

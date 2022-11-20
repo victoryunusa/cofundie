@@ -1,0 +1,109 @@
+
+
+/* 7. installer */
+.install{
+    background: #212529;
+  }
+  .content-requirments{
+    position: relative;
+  }
+  .requirments-main-content {
+    background: #212529;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 53px;
+    border-radius: 30px;
+    box-shadow: #101010 2px 2px 6px, #3e3b3b -2px -2px 6px;
+  }
+  .installer-header h2 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fdfbfb;
+  }
+  .installer-header p {
+    font-size: 18px;
+    margin-bottom: 35px;
+    color: #b9b7b7;
+  }
+  .note-group-select-from-files {
+  display: none;
+  }
+  .btn.btn-primary.install-btn {
+    box-shadow: #101010 2px 2px 6px, #3e3b3b -2px -2px 6px;
+    background: transparent !important;
+    padding: 13px 47px;
+    border-radius: 5px;
+  }
+  .btn.btn-primary.install-btn:focus {
+    box-shadow: #101010 2px 2px 6px, #3e3b3b -2px -2px 6px;
+    outline: 0;
+    background: transparent;
+  }
+  table.table.requirments td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: #fff;
+  }
+  table.table.requirments .thead-light th {
+    color: #495057;
+    background-color: transparent;
+    border-color: #dee2e6;
+    border-bottom: none;
+    color: #fff;
+  }
+  .install-form label {
+    font-size: 17px;
+    color: #e7e9ef;
+    font-weight: 400;
+  }
+  .install-form .form-control {
+    background: transparent;
+    border: none;
+    box-shadow: #101010 2px 2px 6px, #3e3b3b -2px -2px 6px;
+    height: 50px;
+    color: #fff;
+  }
+  a.back.btn{
+    background: #fff;
+    color: #222;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  table.table.category thead th{
+    background: #435177;
+  }
+  table.table.category tfoot th{
+    background: #435177;
+  }
+  .map-canvas{
+    height: 300px;
+  }
+  
+  .f-right{
+    float: right;
+  }
+  
+  .required::after {
+    content: '*' !important;
+    color: red !important;
+  }
+  
+  
+  label.custom-label {
+    border: 3px dotted #e0e2f0;
+    padding: 50px 0px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  label.custom-label i {
+    font-size: 40px;
+  }
+  
+  
