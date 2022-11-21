@@ -19,7 +19,7 @@ class ReportController extends Controller
 
     public function investments()
     {
-        $investments = Investment::with('user', 'project')->latest()->paginate();
+        $investments = Investment::with('user', 'project','gateway')->latest()->paginate();
         return view('admin.investments.index', compact('investments'));
     }
 

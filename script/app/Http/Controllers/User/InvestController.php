@@ -27,9 +27,9 @@ class InvestController extends Controller
 
     public function investmentLogs()
     {
-        $invests = Investment::whereUserId(auth()->id())->with('gateway', 'project.nextschedule', 'user')
+        $invests = Investment::whereUserId(auth()->id())->with('gateway', 'project.nextschedule', 'project')
                     ->when(request('search'), function($q) {
-                        $q->where('trx', 'LIKE', '%'.request('search').'%');
+                       return $q->where('trx', 'LIKE', '%'.request('search').'%');
                     })
                     ->latest()
                     ->paginate();

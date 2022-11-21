@@ -46,7 +46,7 @@
                                         data-rate="{{ $currency->rate }}"
                                         data-code="{{ $currency->code }}"
                                         data-symbol="{{ $currency->symbol }}"
-                                        @selected($gateway->currency_id)
+                                      
                                     >
                                         {{ $currency->name }}
                                     </option>
@@ -154,6 +154,7 @@
 @push('script')
     <script>
         "use strict";
+        $('#currency').val({{$gateway->currency_id}})
         setText();
         $('#currency').on('change', function(){
             setText()

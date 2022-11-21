@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use DB;
-
+use Session;
 class HomeController extends Controller
 {
     public function index()
@@ -63,6 +63,13 @@ class HomeController extends Controller
         return view('frontend.index', [
             'data' => $data,
         ]);
+    }
+
+    public function dismiss()
+    {
+        Session::put('dismiss_header',true);
+
+        return response(__('Header Notification Bar Removed...!!'));
     }
 
     public function page($slug)

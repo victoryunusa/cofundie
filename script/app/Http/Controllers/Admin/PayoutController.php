@@ -20,6 +20,13 @@ class PayoutController extends Controller
         $this->middleware('permission:payouts-delete')->only('edit', 'destroy');
     }
 
+
+     public function show(Payout $payout)
+    {
+        $payout->load('userbank.bank', 'currency');
+        return view('admin.payouts.show', compact('payout'));
+    }
+
     public function index()
     {
         $data['total_payouts'] = Payout::count();

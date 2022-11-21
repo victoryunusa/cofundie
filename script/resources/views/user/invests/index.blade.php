@@ -33,7 +33,7 @@
                 @foreach ($invests as $invest)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $invest->project->title }}</td>
+                        <td><a href="{{ url('/properties/'.$invest->project->slug ?? '') }}" target="_blank">{{ $invest->project->title ?? '' }}</a></td>
                         <td>{{ $invest->gateway->name ?? $invest->gateway_id }}</td>
                         <td>{{ currency_format($invest->amount) }}</td>
                         <td>{{ formatted_date($invest->created_at) }}</td>

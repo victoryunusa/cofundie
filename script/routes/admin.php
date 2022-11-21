@@ -45,6 +45,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Co
     Route::get('payouts/approved', 'PayoutController@approved')->name('payouts.approved');
     Route::get('payouts/reject', 'PayoutController@reject')->name('payouts.reject');
     Route::resource('payouts', 'PayoutController')->only('index');
+    Route::get('payouts/{id}', 'PayoutController@show');
 
     // KYC
     Route::post('/kyc-method/mass-destroy','KycMethodController@massDestroy')->name('kyc-method.mass-destroy');

@@ -76,7 +76,7 @@ class PaymentGatewayController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+         $request->validate([
             'name' => 'required|unique:gateways,name,' . $id,
             'logo' => 'nullable|image|max:100',
             'charge' => 'required',
@@ -123,6 +123,8 @@ class PaymentGatewayController extends Controller
         $gateway->test_mode = $request->test_mode;
         $gateway->status = $request->status;
         $gateway->image_accept = $request->image_accept;
+        $gateway->min_amount = $request->min_amount;
+        $gateway->max_amount = $request->max_amount;      
         $gateway->save();
 
         return response()->json('Successfully Updated!');

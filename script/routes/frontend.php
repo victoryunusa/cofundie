@@ -25,15 +25,11 @@ Route::group(['as' => 'frontend.', 'namespace' => 'App\Http\Controllers\Frontend
     Route::get('/blogs/{slug}', 'BlogController@show')->name('blogs.show');
     Route::get('/contacts', 'ContactController@index')->name('contacts.index');
     Route::post('/contacts', 'ContactController@store')->name('contacts.store');
-
+    Route::post('/dismiss-header','HomeController@dismiss');
     Route::post('newsletter-subscribe', '\App\Http\Controllers\CommonController@subscribeToNewsLetter')->name('subscribe-to-news-letter');
 });
 
-//Cron jobs
-Route::group(['prefix' => 'cron', 'as' => 'cron.'], function (){
-    Route::get('invest/profit-loss', [CronController::class, 'profitLoss'])->name('invest.profit-loss');
-    Route::get('before-expire-7-days', [CronController::class, 'beforeExpireSevenDay'])->name('before-expire-seven-day');
-});
+
 
 
 /*

@@ -636,6 +636,38 @@
         }, 1000);
     });
 
+     /*-------------------------------
+    Action Confirmation Alert
+    -----------------------------------*/
+    $(document).on('click', '.confirm-action', function(event) {
+        var url = $(this).data('action');
+        var method = $(this).data('method') ?? 'POST'
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to do this?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#6777ef',
+            cancelButtonColor: '#fc544b',
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                $.ajax({
+                    type: method,
+                    url: url,
+                    success: function(response){
+                        success(response)
+                    },
+                    error: function(xhr, status, error)
+                    {
+                        error_response(xhr)
+                    }
+                })
+            }
+        })
+    });
+
+
 })(jQuery);
 
 /*---------------------------

@@ -101,6 +101,10 @@
                                                         {{ __('Action') }}
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                        <a class="dropdown-item has-icon" href="{{ url('/admin/payouts',$payout->id) }}">
+                                                            <i class="fa fa-eye"></i>
+                                                            {{ __('View') }}
+                                                        </a>
                                                         @if ($payout->status != 'approved')
                                                         <a class="dropdown-item has-icon action-confirm" href="javascript:void(0)" data-action="{{ route('admin.payouts.approved', ['payout' => $payout->id]) }}" data-icon="success" data-text="You want to approve this?">
                                                             <i class="fa fa-check"></i>

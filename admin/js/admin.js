@@ -99,6 +99,7 @@ function getUserDashboardData() {
             $(".total-withdraw").text(res.total_withdraw);
             $(".pending-deposit").text(res.pending_deposit);
             $(".total-earnings").text(res.total_earnings);
+            $(".total-loss").text(res.total_loss);
             $(".total-invest").text(res.total_invest);
             $(".current-invest").text(res.current_invest);
             $(".pending-withdraw").text(res.pending_withdraw);

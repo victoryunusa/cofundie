@@ -19,12 +19,12 @@
             @foreach ($projects as $project)
             <div class="col-xl-6">
                 <div class="card">
-                    <a target="_blank" href="{{ route('frontend.properties.show', $project->slug) }}">
+                    <a target="_blank" href="{{ url('/properties/'.$project->slug) }}">
                         <img height="300px" class="card-img-top" src="{{ $project->thumbnail }}" alt="Image placeholder">
                     </a>
                     <div class="overlay card-body">
                         <a href="">
-                            <h2 class="text-white font-weight-600">{{ $project->title }}</h2>
+                            <h2 class="text-white font-weight-600"><a class="text-white font-weight-600" href="{{ url('/properties/'.$project->slug) }}" target="_blank">{{ $project->title }}</a></h2>
                             <p class="text-white font-weight-600"> <i class="fas fa-location-arrow"></i> {{ $project->address }}</p>
                         </a>
                     </div>

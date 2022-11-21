@@ -23,7 +23,7 @@
                     <th>{{ __('S/N') }}</th>
                     <th>{{ __('Plan Name') }}</th>
                     <th>{{ __('Earning Amount') }}</th>
-                    <th>{{ __('Invest Amount') }}</th>
+                    
                     <th>{{ __('Payment Date') }}</th>
                 </tr>
             </thead>
@@ -31,9 +31,9 @@
                 @foreach ($earnings as $earning)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $earning->project->title }}</td>
+                        <td><a target="_blank" href="{{ url('/properties/'.$earning->project->slug ?? '') }}">{{ $earning->project->title ?? '' }}</a></td>
                         <td>{{ currency_format($earning->amount) }}</td>
-                        <td class="text-danger">{{ __('Wait.....') }}</td>
+                        
                         <td>{{ formatted_date($earning->created_at) }}</td>
                     </tr>
                 @endforeach

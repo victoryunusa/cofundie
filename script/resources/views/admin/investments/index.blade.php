@@ -27,9 +27,9 @@
                             @foreach ($investments as $investment)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
-                                <td>{{ $investment->trx }}</td>
-                                <td>{{ $investment->project->title }}</td>
-                                <td>{{ $investment->user->name }}</td>
+                                <td>{{ $investment->trx }} ({{ $investment->gateway->name ?? 'Wallet' }})</td>
+                                <td><a href="{{ url('/properties/'.$investment->project->slug ?? '') }}" target="_blank">{{ $investment->project->title ?? '' }}</a></td>
+                                <td><a href="{{ url('/admin/customers/'.$investment->user_id) }}">{{ $investment->user->name ?? '' }}</a></td>
                                 <td>{{ $investment->amount }}</td>
                                 <td>{{ $investment->share.'%' }}</td>
                                 <td>{{ $investment->is_returnable ? 'Yes':'No' }}</td>

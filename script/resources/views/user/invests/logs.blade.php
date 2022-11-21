@@ -21,7 +21,7 @@
                 <tr>
                     <th>{{ __('S/N') }}</th>
                     <th>{{ __('Trx') }}</th>
-                    <th>{{ __('User') }}</th>
+                    <th>{{ __('Project') }}</th>
                     <th>{{ __('Gateway') }}</th>
                     <th>{{ __('Amount') }}</th>
                     <th>{{ __('Currency') }}</th>
@@ -34,7 +34,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $invest->trx }}</td>
-                        <td>{{ $invest->user->name }}</td>
+                        <td><a href="{{ url('/properties/'.$invest->project->slug ?? '') }}" target="_blank">{{ Str::limit($invest->project->title ?? '',40) }}</a></td>
                         <td>{{ $invest->gateway->name ?? $invest->gateway_id }}</td>
                         <td>{{ currency_format($invest->amount) }}</td>
                         <td>{{ default_currency()->code }}</td>

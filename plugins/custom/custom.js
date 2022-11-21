@@ -39,6 +39,7 @@
 
     $('.anna-dismiss').on('click', function() {
         $('.top-header-area').fadeOut();
+        $('.header_form').submit();
     })
 
     $('.invest-amount').on('keyup', function() {

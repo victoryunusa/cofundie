@@ -16,7 +16,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $investments = Investment::with('project.nextschedule')->whereUserId(auth()->id())->paginate();
+        $investments = Investment::whereHas('project.nextschedule')->with('project.nextschedule')->whereUserId(auth()->id())->paginate();
         $installments = Installment::with('project')->whereUserId(auth()->id())->where('next_installment', '>=', today())->paginate();
         return view('user.dashboard.index', compact('installments', 'investments'));
     }
@@ -27,6 +27,7 @@ class DashboardController extends Controller
         $data['total_withdraw'] = currency_format(Payout::whereUserId(auth()->id())->sum('amount'));
         $data['pending_deposit'] = currency_format(Deposit::whereUserId(auth()->id())->whereStatus(0)->sum('amount'));
         $data['total_earnings'] = currency_format(Returntransaction::whereUserId(auth()->id())->where('amount', '>', 0)->sum('amount'));
+        $data['total_loss'] = Returntransaction::whereUserId(auth()->id())->where('amount', '<', 0)->sum('amount').default_currency()->symbol;
         $data['total_invest'] = currency_format(Investment::whereUserId(auth()->id())->sum('amount'));
         $data['current_invest'] = currency_format(Investment::whereUserId(auth()->id())->latest()->limit(1)->sum('amount'));
         $data['pending_withdraw'] = currency_format(Payout::whereStatus(0)->whereUserId(auth()->id())->sum('amount'));

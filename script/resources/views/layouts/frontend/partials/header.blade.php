@@ -5,7 +5,7 @@
 <!-- Header Area Start -->
 <header class="site-header single site-header--menu-right landing-1-menu site-header--absolute site-header--sticky">
     <!-- Top Header Area -->
-    @if ($announcement && $announcement['status'] == 1)
+    @if ($announcement && $announcement['status'] == 1 && !Session::has('dismiss_header'))
     <div class="top-header-area">
         <div class="bg-violet-800">
             <div class="container">
@@ -35,6 +35,9 @@
                         </div>
 
                         <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+                            <form class="ajaxform header_form" method="POST" action="{{ url('/dismiss-header') }}">
+                                @csrf
+                            </form>
                             <button type="button" class="-mr-1 flex rounded-md p-2 hover:bg-violet-50 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2 anna-dismiss">
                                 <span class="sr-only">Dismiss</span>
                                 <!-- Heroicon name: outline/x-mark -->

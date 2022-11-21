@@ -79,6 +79,28 @@
         </div>
     </div>
 
+ <div class="col-lg-4 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="font-weight-bold mb-0">{{ __('Total Loss') }}</h4>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                          <i class="ni ni-chart-bar-32"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="mb-0 font-weight-bold">
+                    <h1 class="text-nowrap total-loss">
+                        <img src="{{ asset('frontend/img/icons/loader.gif') }}" height="20">
+                    </h1>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="col-lg-4 col-sm-6">
         <div class="card card-stats">
             <div class="card-body">
@@ -250,16 +272,22 @@
                         @foreach ($investments as $investment)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
-                                <td>{{ optional($investment->project->nextschedule)->project->title ?? '' }}</td>
+                                <td>{{ $investment->project->title ?? '' }}</td>
                                 <td>
                                     <div class="badge badge-light">
                                         {{ ucfirst(optional($investment->project->nextschedule)->return_type) }}
+
                                     </div>
+
                                 </td>
                                 <td>
                                     <div class="badge badge-{{ optional($investment->project->nextschedule)->profit_type == 'profit' ? 'success':'danger' }}">
                                         {{ ucfirst(optional($investment->project->nextschedule)->profit_type) }}
                                     </div>
+                                    @if(optional($investment->project->nextschedule)->attachment != null)
+                                    <br>
+                                    <a target="_blank" href="{{ asset(optional($investment->project->nextschedule)->attachment) }}">{{ __('Attachment') }}</a>
+                                    @endif
                                 </td>
                                 <td>{{ currency_format(optional($investment->project->nextschedule)->amount) }}</td>
                                 <td>{{ formatted_date(optional($investment->project->nextschedule)->return_date) }}</td>
