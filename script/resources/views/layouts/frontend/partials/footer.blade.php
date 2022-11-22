@@ -1,20 +1,21 @@
 @php
     $logo = get_option('logo_setting');
     $footer = get_option('footer_setting');
+   
 @endphp
 
 <!-- Footer Area -->
 <div class="footer-area bg-slate-800 section-padding-100-50">
     <div class="welcome-bg-shape-2">
-        <img src="{{ asset($footer->footer_left ?? 'frontend/img/icons/5.png') }}" alt="">
+        <img src="{{ asset($footer['footer_left'] ?? 'frontend/img/icons/5.png') }}" alt="">
     </div>
     <div class="welcome-bg-shape-3">
-        <img src="{{ asset($footer->footer_right ?? 'frontend/img/icons/5.png') }}" alt="">
+        <img src="{{ asset($footer['footer_right'] ?? 'frontend/img/icons/5.png') }}" alt="">
     </div>
     <div class="container">
         <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-4 md:col-span-12 sm:col-span-6 pb-50">
-                <a href="#" class="footer-logo">
+                <a href="{{ url('/') }}" class="footer-logo">
                     <img class="w-36" src="{{ asset($logo['logo'] ?? 'frontend/img/core-img/logo.png') }}" alt="">
                 </a>
                 <p class="mt-6 text-gray-300 font-normal">{{ $footer['about'] ?? null }}</p>
