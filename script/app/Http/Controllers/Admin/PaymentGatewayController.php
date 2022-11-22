@@ -49,8 +49,8 @@ class PaymentGatewayController extends Controller
             $image = $request->file('logo');
             $path = 'uploads/' . strtolower(env('APP_NAME')) . date('/y/m/');
             $name = uniqid() . date('dmy') . time() . "." . strtolower($image->getClientOriginalExtension());
-            Storage::disk(env('STORAGE_TYPE'))->put($path . $name, file_get_contents(Request()->file('logo')));
-            $file_url = Storage::disk(env('STORAGE_TYPE'))->url($path . $name);
+            Storage::put($path . $name, file_get_contents(Request()->file('logo')));
+            $file_url = Storage::url($path . $name);
             $gateway->logo = $file_url;
         }
 
@@ -102,7 +102,7 @@ class PaymentGatewayController extends Controller
                 $arr = explode('uploads', $file);
                 if (count($arr ?? []) != 0) {
                     if (isset($arr[1])) {
-                        Storage::disk(env('STORAGE_TYPE'))->delete('uploads' . $arr[1]);
+                        Storage::delete('uploads' . $arr[1]);
                     }
                 }
             }
@@ -111,9 +111,9 @@ class PaymentGatewayController extends Controller
             $path = 'uploads/' . strtolower(env('APP_NAME')) . date('/y/m/');
             $name = uniqid() . date('dmy') . time() . "." . strtolower($image->getClientOriginalExtension());
 
-            Storage::disk(env('STORAGE_TYPE'))->put($path . $name, file_get_contents(Request()->file('logo')));
+            Storage::put($path . $name, file_get_contents(Request()->file('logo')));
 
-            $file_url = Storage::disk(env('STORAGE_TYPE'))->url($path . $name);
+            $file_url = Storage::url($path . $name);
             $gateway->logo = $file_url;
         }
 

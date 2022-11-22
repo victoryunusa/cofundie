@@ -21,9 +21,7 @@
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#mail_configuration" role="tab" aria-controls="driver" aria-selected="false">{{ __('Mail Configuration') }}</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#dns_verification" role="tab" aria-controls="driver" aria-selected="false">{{ __('DNS Verification') }}</a>
-                            </li>
+                           
 
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#recaptcha" role="tab" aria-controls="driver" aria-selected="false">{{ __('MailChimp') }}</a>
@@ -33,9 +31,6 @@
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#driver" role="tab" aria-controls="driver" aria-selected="false">{{ __('Drivers') }}</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#recaptcha" role="tab" aria-controls="driver" aria-selected="false">{{ __('Recaptcha') }}</a>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#redis_method" role="tab" aria-controls="driver" aria-selected="false">{{ __('Redis Settings (Cache Driver)') }}</a>
@@ -47,12 +42,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#storage" role="tab" aria-controls="driver" aria-selected="false">{{ __('Storage Settings') }}</a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#compressor" role="tab" aria-controls="driver" aria-selected="false">{{ __('Image Compressor Settings') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#fmc" role="tab" aria-controls="driver" aria-selected="false">{{ __('Firebase Settings (Push Notification)') }}</a>
-                            </li>
+                            
+                          
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#other" role="tab" aria-controls="driver" aria-selected="false">{{ __('Others') }}</a>
                             </li>
@@ -97,15 +88,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('Google ANALYTICS VIEW ID') }}</label>
-                                    <input type="text" name="ANALYTICS_VIEW_ID" class="form-control" value="{{ env('ANALYTICS_VIEW_ID') }}">
-
+                                    <label>{{ __('KYC Verification Required?') }}</label>
+                                    <select class="form-control" name="KYC_VERIFICATION">
+                                        <option value="true" @if(env('KYC_VERIFICATION') == true) selected @endif>Yes</option>
+                                        <option value="false" @if(env('KYC_VERIFICATION') == false) selected @endif>NO</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>{{ __('Google ANALYTICS service-account-credentials.json') }}</label>
-                                    <input type="file" accept=".json" name="service_account_credentials" class="form-control">
-
-                                </div>
+                                
 
 
                             </div>
@@ -123,6 +112,8 @@
                                     <label for="CACHE_DRIVER">{{ __('CACHE_DRIVER') }} <small class="text-danger">Recommended <strong>Memcached or Redis</strong> Cache Driver For Height Performance Application And Optimize Call Database Query</small></label>
                                     <select class="form-control" name="CACHE_DRIVER">
                                         <option value="array" @if(env('CACHE_DRIVER') == 'array') selected="" @endif>{{ __('Array (Low Performance)') }}</option>
+
+                                         <option value="file" @if(env('CACHE_DRIVER') == 'file') selected="" @endif>{{ __('File (Medium)') }}</option>
 
                                         <option value="memcached" @if(env('CACHE_DRIVER') == 'memcached') selected="" @endif>{{ __('Memcached  (Dont Enable If You Dont Have Memcached Extension)') }}</option>
 
@@ -171,49 +162,8 @@
                             </div>
 
 
-                            <div class="tab-pane fade" id="recaptcha" role="tabpanel" aria-labelledby="profile-tab4">
-
-
-                                <div class="form-group">
-                                    <label>{{ __('NOCAPTCHA_SECRET') }}</label>
-                                    <input type="text"  name="NOCAPTCHA_SECRET" class="form-control" value="{{ env('NOCAPTCHA_SECRET') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>{{ __('NOCAPTCHA_SITEKEY') }}</label>
-                                    <input type="text"  name="NOCAPTCHA_SITEKEY" class="form-control" value="{{ env('NOCAPTCHA_SITEKEY') }}">
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="dns_verification" role="tabpanel" aria-labelledby="profile-tab4">
-                                <h6>DNS Verification for custom domain register</h6>
-                                 <div class="form-group">
-                                    <a href="https://mojodns.com/" target="_blank">{{ __('MOJODNS_AUTHORIZATION_TOKEN') }}</a>
-                                    <input type="text"  name="MOJODNS_AUTHORIZATION_TOKEN" class="form-control" value="{{ env('MOJODNS_AUTHORIZATION_TOKEN') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('SERVER_IP') }}</label>
-                                    <input type="text"  name="SERVER_IP" class="form-control" value="{{ env('SERVER_IP') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('CNAME_DOMAIN') }}</label>
-                                    <input type="text"  name="CNAME_DOMAIN" class="form-control" value="{{ env('CNAME_DOMAIN') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('VERIFY IP') }}</label>
-                                    <select name="VERIFY_IP" class="form-control">
-                                        <option value="true" @if(env('VERIFY_IP')===true) selected="" @endif>{{ __('On') }}</option>
-                                        <option value="false" @if(env('VERIFY_IP')===false) selected="" @endif>{{ __('Off') }}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('VERIFY CNAME') }}</label>
-                                    <select name="VERIFY_CNAME" class="form-control">
-                                        <option value="true" @if(env('VERIFY_CNAME')===true) selected="" @endif>{{ __('On') }}</option>
-                                        <option value="false" @if(env('VERIFY_CNAME')===false) selected="" @endif>{{ __('Off') }}</option>
-                                    </select>
-                                </div>
-
-                            </div>
+                           
+                           
 
                             <div class="tab-pane fade" id="recaptcha" role="tabpanel" aria-labelledby="profile-tab4">
                                 <h6>MAILCHIMP Settings</h6>
@@ -231,74 +181,23 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="fmc" role="tabpanel" aria-labelledby="profile-tab4">
-                                <h6>Firebase Settings</h6>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_SERVER_API_KEY') }}</label>
-                                    <input type="text"  name="FMC_SERVER_API_KEY" class="form-control" value="{{ env('FMC_SERVER_API_KEY') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_CLIENT_API_KEY') }}</label>
-                                    <input type="text"  name="FMC_CLIENT_API_KEY" class="form-control" value="{{ env('FMC_CLIENT_API_KEY') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_AUTH_DOMAIN') }}</label>
-                                    <input type="text"  name="FMC_AUTH_DOMAIN" class="form-control" value="{{ env('FMC_AUTH_DOMAIN') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_PROJECT_ID') }}</label>
-                                    <input type="text"  name="FMC_PROJECT_ID" class="form-control" value="{{ env('FMC_PROJECT_ID') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_STORAGE_BUCKET') }}</label>
-                                    <input type="text"  name="FMC_STORAGE_BUCKET" class="form-control" value="{{ env('FMC_STORAGE_BUCKET') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_MESSAGING_SENDER_ID') }}</label>
-                                    <input type="text"  name="FMC_MESSAGING_SENDER_ID" class="form-control" value="{{ env('FMC_MESSAGING_SENDER_ID') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_APP_ID') }}</label>
-                                    <input type="text"  name="FMC_APP_ID" class="form-control" value="{{ env('FMC_APP_ID') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('FMC_MEASUREMENT_ID') }}</label>
-                                    <input type="text"  name="FMC_MEASUREMENT_ID" class="form-control" value="{{ env('FMC_MEASUREMENT_ID') }}">
-                                </div>
-                            </div>
+                           
 
 
 
-                            <div class="tab-pane fade" id="compressor" role="tabpanel" aria-labelledby="profile-tab4">
-                                <h6>Image Optimization For Store</h6>
-                                <p>Image compressor for reduce storage limit and better image loading perfomance</p>
-                                <div class="form-group">
-                                    <label>{{ __('IMAGE_COMPRESS_METHOD') }}</label>
-                                     <select class="form-control" name="IMAGE_COMPRESS_METHOD">
-                                        <option value="tinify"  @if(env('IMAGE_COMPRESS_METHOD')== 'tinify') selected="" @endif>Tinify (TINIFY API KEY required)</option>
-                                        <option value="resmushit"  @if(env('IMAGE_COMPRESS_METHOD')== 'resmushit') selected="" @endif>Resmushit </option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>{{ __('TINIFY API KEY') }}</label>
-                                    <input type="text"  name="TINIFY_API_KEY" class="form-control" value="{{ env('TINIFY_API_KEY') }}">
-                                </div>
-
-
-                            </div>
+                          
 
 
                             <div class="tab-pane fade" id="storage" role="tabpanel" aria-labelledby="profile-tab4">
                                 <h6>Storage Settings</h6>
                                 <div class="form-group">
                                     <label>{{ __('Storage Method') }}</label>
-                                    <select class="form-control" name="STORAGE_TYPE">
-                                        <option value="public"  @if(env('STORAGE_TYPE')== 'public') selected="" @endif>public (uploads folder)</option>
+                                    <select class="form-control" name="FILESYSTEM_DISK">
+                                        <option value="public"  @if(env('FILESYSTEM_DISK')== 'public') selected="" @endif>public (uploads folder)</option>
 
-                                        <option value="s3"  @if(env('STORAGE_TYPE')== 's3') selected="" @endif>AWS S3 Storage Bucket</option>
+                                        <option value="s3"  @if(env('FILESYSTEM_DISK')== 's3') selected="" @endif>AWS S3 Storage Bucket</option>
 
-                                        <option value="wasabi"  @if(env('STORAGE_TYPE')== 'wasabi') selected="" @endif>Wasabi Storage Bucket</option>
+                                        <option value="wasabi"  @if(env('FILESYSTEM_DISK')== 'wasabi') selected="" @endif>Wasabi Storage Bucket</option>
 
                                     </select>
                                 </div>
@@ -923,7 +822,7 @@
  (function ($) {
     "use strict"
 
-    $('#TIMEZONE').val('{{ env('TIMEZONE') }}')
+    $('#TIMEZONE').val('{{ env('TIMEZONE','UTC') }}')
 
 })(jQuery);
 </script>

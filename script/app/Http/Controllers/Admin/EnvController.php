@@ -23,22 +23,13 @@ class EnvController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'service_account_credentials' => 'mimes:json,txt|max:100',
-        ]);
+       
 
-        if ($request->hasFile('service_account_credentials')) {
-            $file = $request->file('service_account_credentials');
-            $name = 'service-account-credentials.json';
-            $path = 'uploads/';
-            $file->move($path, $name);
-        }
-
-        $APP_URL_WITHOUT_WWW=str_replace('www.','', url('/'));
+       
          $APP_NAME = Str::slug($request->APP_NAME);
 $txt ="APP_NAME=".$APP_NAME."
 APP_ENV=local
-APP_KEY=base64:4bJgqF84pmtw3yxCywF+3hT2x9atO28O0RFq1ZTjkA8=
+APP_KEY=base64:tpVfUhOZ9nzBiIBgGtSbZq7VVAYijPC62p1HlgxFaO4=
 APP_DEBUG=".$request->APP_DEBUG."
 APP_URL=".url('/')."
 
@@ -73,11 +64,25 @@ QUEUE_CONNECTION=".$request->QUEUE_CONNECTION."
 SESSION_DRIVER=".$request->SESSION_DRIVER."
 SESSION_LIFETIME=".$request->SESSION_LIFETIME."
 
-STORAGE_TYPE=public
+FILESYSTEM_DISK=".$request->FILESYSTEM_DISK."
 
 LOG_CHANNEL=stack
 LOG_LEVEL=debug
-DEFAULT_LANG=en
+DEFAULT_LANG=".$request->DEFAULT_LANG."
+TIMEZONE=".$request->TIMEZONE."
+KYC_VERIFICATION=".$request->KYC_VERIFICATION."
+
+AWS_ACCESS_KEY_ID=".$request->AWS_ACCESS_KEY_ID."
+AWS_SECRET_ACCESS_KEY=".$request->AWS_SECRET_ACCESS_KEY."
+AWS_DEFAULT_REGION=".$request->AWS_DEFAULT_REGION."
+AWS_BUCKET=".$request->AWS_BUCKET."
+
+WAS_ACCESS_KEY_ID=".$request->WAS_ACCESS_KEY_ID."
+WAS_SECRET_ACCESS_KEY=".$request->WAS_SECRET_ACCESS_KEY."
+WAS_DEFAULT_REGION=".$request->WAS_DEFAULT_REGION."
+WAS_BUCKET=".$request->WAS_BUCKET."
+WAS_ENDPOINT=".$request->WAS_ENDPOINT."
+
 ";
 
   File::put(base_path('.env'),$txt);
