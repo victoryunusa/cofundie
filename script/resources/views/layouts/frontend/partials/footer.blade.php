@@ -6,10 +6,10 @@
 <!-- Footer Area -->
 <div class="footer-area bg-slate-800 section-padding-100-50">
     <div class="welcome-bg-shape-2">
-        <img src="{{ asset('frontend/img/icons/5.png') }}" alt="">
+        <img src="{{ asset($footer->footer_left ?? 'frontend/img/icons/5.png') }}" alt="">
     </div>
     <div class="welcome-bg-shape-3">
-        <img src="{{ asset('frontend/img/icons/5.png') }}" alt="">
+        <img src="{{ asset($footer->footer_right ?? 'frontend/img/icons/5.png') }}" alt="">
     </div>
     <div class="container">
         <div class="grid grid-cols-12 gap-4">
@@ -24,10 +24,7 @@
                     @endforeach
                 </ul>
                 <!--end icon-->
-                <ul class="mt-4">
-                    <li class="inline-block mr-3"><a href="#"><img src="{{ asset('frontend/img/icons/3.svg') }}" alt=""></a></li>
-                    <li class="inline-block"><a href="#"><img src="{{ asset('frontend/img/icons/4.svg') }}" alt=""></a></li>
-                </ul>
+               
             </div>
             <!--end col-->
 

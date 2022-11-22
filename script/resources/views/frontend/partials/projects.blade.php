@@ -57,6 +57,10 @@
                 </div>
                 @endforeach
             </div>
+            @isset($projects)
+            {{ $projects->links('vendor.pagination.tailwind') }}
+            @endisset
         </div>
+
     </div>
 @endif

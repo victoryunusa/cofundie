@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title>@hasSection('title')@yield('title') |@endif {{ config('app.name') }}</title>
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    {!! JsonLd::generate() !!}
+   
     <!-- Favicon -->
     <link rel="icon" href="{{ get_option('logo_setting', true)->favicon }}">
     <!-- Import css File -->

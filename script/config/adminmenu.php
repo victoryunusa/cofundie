@@ -260,19 +260,7 @@ return [
                 "route" => "admin.payment-gateways.index",
                 "patterns" => ["admin/payment-gateways*"],
                 "can" => ['gateways-read'],
-            ],
-            [
-                "title" => "Roles",
-                "route" => "admin.roles.index",
-                "patterns" => ["admin/roles*"],
-                "can" => ['roles-read'],
-            ],
-            [
-                "title" => "Assign Role",
-                "route" => "admin.assign-role.index",
-                "patterns" => ["admin/assign-role*"],
-                "can" => ['roles-assign-read'],
-            ],
+            ]
         ]
     ],
 ];

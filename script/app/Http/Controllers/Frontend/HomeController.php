@@ -7,6 +7,10 @@ use App\Models\Option;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
 use DB;
 use Session;
@@ -25,12 +29,27 @@ class HomeController extends Controller
             return redirect()->route('install');
         }
         //Set SEO
-        $seoOption = get_option('seo_home', true);
+      
 
-        SEOMeta::setTitle($seoOption->site_name ?? null, false);
-        SEOMeta::setDescription($seoOption->metadescription ?? null);
-        SEOMeta::addKeyword(str($seoOption->metatag ?? null)->explode(',')->toArray());
-        SEOTools::twitter()->setSite($seoOption->twitter_site_title ?? null);
+        $seo = get_option('seo_home', true);
+        $logo = get_option('logo_setting',true)->logo ?? 'uploads/logo.png';
+
+        JsonLdMulti::setTitle($seo->site_name ?? env('APP_NAME'));
+        JsonLdMulti::setDescription($seo->matadescription ?? null);
+        JsonLdMulti::addImage(asset($logo));
+
+        SEOMeta::setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOMeta::setDescription($seo->matadescription ?? null);
+        SEOMeta::addKeyword($seo->tags ?? null);
+
+        SEOTools::setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOTools::setDescription($seo->matadescription ?? null);
+        SEOTools::setCanonical(url('/'));
+        SEOTools::opengraph()->addProperty('keywords', $seo->matatag ?? null);
+        SEOTools::opengraph()->addProperty('image', asset($logo));
+        SEOTools::twitter()->setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOTools::twitter()->setSite($seo->twitter_site_title ?? null);
+        SEOTools::jsonLd()->addImage(asset($logo));
 
         $data = cache_remember('website.heading.'.current_locale(), function () {
             $headingData = Option::whereLang(current_locale())
@@ -78,7 +97,28 @@ class HomeController extends Controller
             ['type', 'page'],
             ['slug', $slug],
             ['status', 1],
-        ])->firstOrFail();
+        ])->with('page')->firstOrFail();
+
+        $seo = get_option('seo_home', true);
+        $logo = get_option('logo_setting',true)->logo ?? 'uploads/logo.png';
+        $meta=json_decode($page->page->value ?? '');
+
+        JsonLdMulti::setTitle($page->title ?? env('APP_NAME'));
+        JsonLdMulti::setDescription($meta->metadescription ?? null);
+        JsonLdMulti::addImage(asset($logo));
+
+        SEOMeta::setTitle($page->title ?? env('APP_NAME'));
+        SEOMeta::setDescription($meta->metadescription ?? null);
+        SEOMeta::addKeyword($meta->metatag ?? null);
+
+        SEOTools::setTitle($page->title ?? env('APP_NAME'));
+        SEOTools::setDescription($meta->matadescription ?? null);
+        SEOTools::setCanonical(url('/'));
+        SEOTools::opengraph()->addProperty('keywords', $meta->metatag ?? null);
+        SEOTools::opengraph()->addProperty('image', asset($logo));
+        SEOTools::twitter()->setTitle($page->titlee ?? env('APP_NAME'));
+       
+        SEOTools::jsonLd()->addImage(asset($logo));
 
         return view('frontend.page.index', compact('page'));
     }

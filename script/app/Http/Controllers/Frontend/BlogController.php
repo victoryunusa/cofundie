@@ -4,27 +4,41 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Term;
 use App\Models\Option;
-// use Artesaos\SEOTools\Facades\SEOMeta;
-// use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
-use Illuminate\Database\Eloquent\Builder;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\JsonLdMulti;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class BlogController extends Controller
 {
     public function index(Request $request)
     {
         //Set SEO
-        $seoOption = get_option('seo_blog', true);
+       
 
-        SEOMeta::setTitle($seoOption->site_name ?? null, false);
-        SEOMeta::setDescription($seoOption->matadescription ?? null);
-        SEOMeta::addKeyword(str($seoOption->metatag ?? null)->explode(',')->toArray());
-        SEOTools::twitter()->setSite($seoOption->twitter_site_title ?? null);
+        $seo = get_option('seo_blog', true);
+        $logo = get_option('logo_setting',true)->logo ?? 'uploads/logo.png';
+
+        JsonLdMulti::setTitle($seo->site_name ?? env('APP_NAME'));
+        JsonLdMulti::setDescription($seo->matadescription ?? null);
+        JsonLdMulti::addImage(asset($logo));
+
+        SEOMeta::setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOMeta::setDescription($seo->matadescription ?? null);
+        SEOMeta::addKeyword($seo->tags ?? null);
+
+        SEOTools::setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOTools::setDescription($seo->matadescription ?? null);
+        
+        SEOTools::opengraph()->addProperty('keywords', $seo->matatag ?? null);
+        SEOTools::opengraph()->addProperty('image', asset($logo));
+        SEOTools::twitter()->setTitle($seo->site_name ?? env('APP_NAME'));
+        SEOTools::twitter()->setSite($seo->twitter_site_title ?? null);
+        SEOTools::jsonLd()->addImage(asset($logo));
 
         // Main
         $src = $request->get('title');
@@ -48,6 +62,7 @@ class BlogController extends Controller
             ->when($src !== null, function (Builder $builder) use($src) {
                 $builder->where('title', 'LIKE', '%'.$src.'%');
             })
+            ->where('status',1)
             ->latest()
             ->paginate(10);
 
@@ -56,7 +71,7 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $post = Term::with('preview', 'description')->where('slug', $slug)->firstOrFail();
+        $post = Term::with('preview', 'description')->where('status',1)->where('slug', $slug)->firstOrFail();
         SEOMeta::setTitle($post->title);
         SEOMeta::setDescription($post->description->value ?? 'Description');
         SEOMeta::addMeta('article:published_time', $post->created_at->toW3CString(), 'property');
@@ -65,17 +80,17 @@ class BlogController extends Controller
         OpenGraph::setDescription($post->description->value ?? 'Description');
         OpenGraph::setTitle($post->title);
 
-        OpenGraph::addImage($post->preview->value ?? 'test');
-        OpenGraph::addImage(['url' => $post->preview->value ?? 'http://image.url.com/cover.jpg', 'size' => 300]);
-        OpenGraph::addImage($post->preview->value ?? 'http://image.url.com/cover.jpg', ['height' => 300, 'width' => 300]);
+        OpenGraph::addImage(asset($post->preview->value ?? ''));
+        OpenGraph::addImage(['url' => asset($post->preview->value ?? ''), 'size' => 300]);
+        OpenGraph::addImage(asset($post->preview->value ?? ''), ['height' => 300, 'width' => 300]);
 
         JsonLd::setTitle($post->title);
         JsonLd::setDescription($post->description->value ?? 'Description');
-        JsonLd::setType('Article');
+      
 
         $recentPosts = Term::whereType('blog')
             ->with('preview', 'description')
-            ->latest()->limit(3)->get();
+            ->latest()->where('status',1)->limit(3)->get();
 
         return view('frontend.blog.show', compact('recentPosts', 'post'));
     }

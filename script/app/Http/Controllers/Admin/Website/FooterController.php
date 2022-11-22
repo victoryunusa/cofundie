@@ -50,6 +50,8 @@ class FooterController extends Controller
             'about' => $request->input('about'),
             'location' => $request->input('location'),
             'phone' => $request->input('phone'),
+            'footer_left' => $request->input('footer_left'),
+            'footer_right' => $request->input('footer_right'),
             'social' => $social
         ];
         $option->save();

@@ -1,7 +1,5 @@
 @extends('layouts.frontend.app')
 
-@section('title', __($property->title))
-
 @section('content')
     <!-- Breadcrumb Area Start -->
     <section class="breadcrumb-area bg-overlay  bg-img" style="background-image:url({{ asset($property->thumbnail ?? 'frontend/img/bg-img/8.jpg') }})">

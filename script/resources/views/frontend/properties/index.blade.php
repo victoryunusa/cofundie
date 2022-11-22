@@ -25,5 +25,6 @@
 
     <!-- Featured properties -->
     @include('frontend.partials.projects')
-    <!-- Featured properties -->
+
+    
 @endsection

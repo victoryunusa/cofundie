@@ -1,7 +1,9 @@
 @extends('layouts.backend.app')
 
 @section('title', __('Footer Settings'))
-
+@section('style')
+    <link rel="stylesheet" href="{{ asset('plugins/dropzone/dropzone.css') }}">
+@endsection
 @section('content')
     <section class="section">
 
@@ -29,6 +31,33 @@
                             <label for="phone">{{ __('Phone Number') }}</label>
                             <input type="tel" id="phone" name="phone" class="form-control" value="{{ $footer->phone ?? null }}">
                         </div>
+                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="background_image">{{ __('Footer Left Image') }}</label>
+                                    {{ mediasection([
+                                        'input_id' => 'footer_left',
+                                        'input_name' => 'footer_left',
+                                        'preview_class' => 'footer_left',
+                                        'preview' => $footer->footer_left ?? 'frontend/img/icons/5.png',
+                                        'value' => $footer->footer_left ?? 'frontend/img/icons/5.png'
+                                    ]) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="background_image">{{ __('Footer Right Image') }}</label>
+                                    {{ mediasection([
+                                        'input_id' => 'footer_right',
+                                        'input_name' => 'footer_right',
+                                        'preview_class' => 'footer_right',
+                                        'preview' => $footer->footer_right ?? 'frontend/img/icons/5.png',
+                                        'value' => $footer->footer_right ?? 'frontend/img/icons/5.png'
+                                    ]) }}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -81,9 +110,14 @@
             </form>
         </div>
     </section>
-@endsection
 
+@endsection
+@section('modal')
+    {{ mediasingle() }}
+@endsection
 @push('script')
     <script src="{{ asset('plugins/jqueryrepeater/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('admin/pages/footer.js') }}"></script>
+     <script src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin/custom/media.js ') }}"></script>
 @endpush
