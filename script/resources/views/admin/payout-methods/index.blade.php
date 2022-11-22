@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('admin.payout-methods.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Create new') }}</a>
+                                <a class="btn btn-primary" href="{{ route('admin.payout-methods.create') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ __('Create new') }}</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table" id="table-2">

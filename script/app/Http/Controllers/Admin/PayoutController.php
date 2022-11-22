@@ -7,6 +7,7 @@ use App\Models\Payout;
 use App\Mail\PayoutMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserPayoutMethod;
 use Illuminate\Support\Facades\Mail;
 
 class PayoutController extends Controller
@@ -20,20 +21,13 @@ class PayoutController extends Controller
         $this->middleware('permission:payouts-delete')->only('edit', 'destroy');
     }
 
-
-     public function show(Payout $payout)
-    {
-        $payout->load('userbank.bank', 'currency');
-        return view('admin.payouts.show', compact('payout'));
-    }
-
     public function index()
     {
         $data['total_payouts'] = Payout::count();
         $data['total_approved'] = Payout::where('status', 'approved')->count();
         $data['total_rejected'] = Payout::where('status', 'rejected')->count();
         $data['total_pending'] = Payout::where('status', 'pending')->count();
-        $data['payouts'] = Payout::latest()->with('payout_method')
+        $data['payouts'] = Payout::latest()->with('method', 'currency')
                     ->when(request('status') == 'approved', function($q) {
                         $q->where('status', 'approved');
                     })
@@ -48,6 +42,15 @@ class PayoutController extends Controller
         return view('admin.payouts.index', $data);
     }
 
+    public function show($id)
+    {
+        $payout=payout::with('user', 'method')->findOrFail($id);
+        $usermethod = UserPayoutMethod::where('user_id', $payout->user_id)->where('payout_method_id', $payout->payout_method_id)->first();
+
+       
+        return view('admin.payouts.show', compact('payout', 'usermethod'));
+    }
+
     public function approved(Request $request)
     {
         $payout = Payout::find($request->payout);
@@ -58,12 +61,7 @@ class PayoutController extends Controller
             ]);
         }
 
-        // Send Email to admin
-        if (env('QUEUE_MAIL')) {
-            Mail::to(env('MAIL_TO'))->queue(new PayoutMail($payout));
-        } else {
-            Mail::to(env('MAIL_TO'))->send(new PayoutMail($payout));
-        }
+      
 
         $payout->update([
             'status' => 'approved'

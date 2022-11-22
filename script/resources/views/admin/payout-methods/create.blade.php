@@ -1,13 +1,7 @@
 @extends('layouts.backend.app', [
      'prev' => route('admin.payout-methods.index'),
 ])
-
 @section('title', __('Create new method'))
-
-@section('style')
-<link rel="stylesheet" href="{{ asset('plugins/dropzone/dropzone.css') }}">
-<link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
-@endsection
 
 @section('content')
     <form method="post" action="{{ route('admin.payout-methods.store') }}" class="ajaxform_with_reset"
@@ -21,13 +15,14 @@
                             <label>{{ __('Method Name') }}</label>
                             <input type="text" class="form-control" placeholder="{{ __('Method Name') }}" required="" name="name">
                         </div>
-                        <div class="form-row">
-                            <div class="col-lg-12 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>{{ __('Select Currency') }}</label>
-                                    <input type="text" class="form-control" placeholder="{{ __('Currency Name') }}" required="" name="currency">
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="currency_id">{{ __('Select Currency') }}</label>
+                            <select name="currency_id" id="currency_id" class="form-control" required>
+                                <option value="">-{{ __('Select') }}-</option>
+                                @foreach ($currencies as $currency)
+                                <option value="{{ $currency->id }}">{{ $currency->name. " (".$currency->rate.")" }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -44,14 +39,14 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="transaction_fixed col-lg-6 col-md-6 col-sm-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>{{ __('Delay') }}</label>
                                     <input type="number" class="form-control" name="delay" placeholder="{{ __('Delay') }}">
                                 </div>
                             </div>
                             <!--- Transaction Charge percentage --->
-                            <div class="transaction_percentage col-lg-6 col-md-6 col-sm-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>{{ __('Rate') }}</label>
                                     <input type="number" class="form-control" name="rate" placeholder="{{ __('Rate') }}">
@@ -75,7 +70,7 @@
                                 </div>
                             </div>
                             <!--- Transaction Charge percentage --->
-                            <div class="transaction_percentage col-sm-12 d-none">
+                            <div class="transaction_percentage col-sm-12 d-block">
                                 <div class="form-group">
                                     <label>{{ __('Percentage Amount') }}</label>
                                     <input type="number" class="form-control" name="percent_charge" placeholder="Percentage Amount">
@@ -173,6 +168,11 @@
     {{ mediasingle() }}
 @endsection
 
+@push('css')
+<link rel="stylesheet" href="{{ asset('plugins/dropzone/dropzone.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
+@endpush
+
 @push('script')
     <!-- JS Libraies -->
     <script src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
@@ -181,33 +181,6 @@
     <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
 
     <script>
-        "use strict";
-
-
-        $( document ).ready(function() {
-            let charge_type = $('#charge_type').val()
-            if(charge_type == 'fixed'){
-                $('.transaction_fixed').addClass('d-block')
-                $('.transaction_percentage').removeClass('d-block')
-            }
-            if(charge_type == 'percentage' ){
-                $('.transaction_fixed').removeClass('d-block')
-                $('.transaction_percentage').addClass('d-block')
-            }
-        });
-        $( document ).click(function() {
-             let charge_type = $('#charge_type').val()
-            if(charge_type == 'fixed'){
-                $('.transaction_fixed').addClass('d-block')
-                $('.transaction_percentage').removeClass('d-block')
-            }
-            if(charge_type == 'percentage' ){
-                $('.transaction_fixed').removeClass('d-block')
-                $('.transaction_percentage').addClass('d-block')
-            }
-        });
-
-
         var x = 0; //Initial field counter is 1
         var count = 1;
         var maxField = 10; //Input fields increment limitation

@@ -18,7 +18,7 @@
                             <th>{{ __('Method name') }}</th>
                             <td>{{ __($method->name) }}</td>
                             <th>{{ __('Currency') }}</th>
-                            <td>{{ $method->currency }}</td>
+                            <td>{{ $method->currency->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('Minimum limit') }}</th>

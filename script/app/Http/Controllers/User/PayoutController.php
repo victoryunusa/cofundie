@@ -8,6 +8,7 @@ use App\Mail\PayoutMail;
 use App\Models\PayoutMethod;
 use Illuminate\Http\Request;
 use App\Models\UserPayoutMethod;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,7 +16,7 @@ class PayoutController extends Controller
 {
     public function index() {
         $pending_amount = Payout::whereStatus('pending')->sum('amount');
-        $methods = PayoutMethod::whereStatus(1)->with('usermethod')->latest()->get();
+        $methods = PayoutMethod::whereStatus(1)->with('usermethod', 'currency')->latest()->get();
         return view('user.payout.index', compact('methods', 'pending_amount'));
     }
 
@@ -77,10 +78,15 @@ class PayoutController extends Controller
                         session()->put('payout_otp', $otp);
                         session()->put('payout_amount', $request->amount);
 
-                        if (env('QUEUE_MAIL')) {
-                            Mail::to(auth()->user()->email)->queue(new OtpMail($otp));
-                        } else {
-                            Mail::to(auth()->user()->email)->send(new OtpMail($otp));
+                        try {
+                            if (env('QUEUE_MAIL')) {
+                                Mail::to(auth()->user()->email)->queue(new OtpMail($otp));
+                            } else {
+                                Mail::to(auth()->user()->email)->send(new OtpMail($otp));
+                            }
+                        } catch (Exception $e) {
+                               return response()->json('The Mail Settings Has Issues', 404);
+                           
                         }
 
                         return response()->json([
@@ -135,35 +141,57 @@ class PayoutController extends Controller
         if ($payout_otp == $request->otp) {
 
             $total_charge = session('plan_charge') + session('method_charge');
-            $payout = Payout::create([
-                'charge' => $total_charge,
-                'user_id' => auth()->id(),
-                'amount' => $payout_amount,
-                'currency' => $method->currency,
-                'payout_method_id' => $method_id,
-            ]);
 
-            auth()->user()->update([
-                'wallet' => auth()->user()->wallet - $payout_amount
-            ]);
-            // Send Email to admin
-            if (env('QUEUE_MAIL')) {
-                Mail::to(env('MAIL_TO'))->queue(new PayoutMail($payout));
-            } else {
-                Mail::to(env('MAIL_TO'))->send(new PayoutMail($payout));
+            DB::beginTransaction();
+            try {
+                $payout = Payout::create([
+                    'charge' => $total_charge,
+                    'user_id' => auth()->id(),
+                    'amount' => $payout_amount,
+                    'currency_id' => $method->currency_id,
+                    'payout_method_id' => $method_id,
+                ]);
+
+                auth()->user()->update([
+                    'wallet' => auth()->user()->wallet - $payout_amount
+                ]);
+
+               
+
+                session()->forget('payout_otp');
+                session()->forget('payout_amount');
+                session()->forget('method_charge');
+                session()->forget('plan_charge');
+
+                DB::commit();
+
+                
+
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return response()->json([
+                    'message' =>  __('Something was wrong, Please contact with author.'),
+                ]);
             }
 
-            session()->forget('payout_otp');
-            session()->forget('payout_amount');
-            session()->forget('method_charge');
-            session()->forget('plan_charge');
+             // Send Email to admin
+            try {
+                if (env('QUEUE_MAIL')) {
+                    Mail::to(env('MAIL_TO'))->queue(new PayoutMail($payout));
+                } else {
+                    Mail::to(env('MAIL_TO'))->send(new PayoutMail($payout));
+                }
+            } catch (Exception $e) {
+                
+            }
 
             return response()->json([
-                'status' => 200,
-                'redirect' => route('user.payout.index'),
-                'message' => __('Payout request successfully.'),
-            ]);
+                    'status' => 200,
+                    'redirect' => route('user.payout.index'),
+                    'message' => __('Payout request successfully.'),
+                ]);
         } else {
+            
             return response()->json(__('Your OTP is incorrect please check your mail and confirm.'), 404);
         }
     }

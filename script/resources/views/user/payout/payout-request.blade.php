@@ -59,26 +59,27 @@
                                     <th>{{ __('Maximum limit') }}</th>
                                     <th>{{ __('Charge type') }}</th>
                                     <th>{{ __('Charge') }}</th>
-                                    <th>{{ __('Rate') }}</th>
                                     <th>{{ __('Delay') }}</th>
-                                    <th>{{ __('Instraction') }}</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ __($method->name) }}</td>
-                                    <td>{{ $method->currency }}</td>
+                                    <td>{{ $method->currency->name ?? '' }}</td>
                                     <td>{{ $method->min_limit }}</td>
                                     <td>{{ $method->max_limit }}</td>
                                     <td>{{ $method->percent_charge ? 'Percentage':'Fixed'  }}</td>
                                     <td>{{ $method->percent_charge ?? $method->fixed_charge }}</td>
-                                    <td>{{ $method->rate  }}</td>
                                     <td>{{ $method->delay }}</td>
-                                    <td>{!! $method->instruction !!}</td>
+                                  
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    {!! $method->instruction !!}
                 </div>
             </div>
         </div>

@@ -21,14 +21,14 @@
                             <label>Method Name</label>
                             <input type="text" class="form-control" placeholder="Method Name"  value="{{$payoutmethod->name}}" required="" name="name">
                         </div>
-                        <div class="form-row">
-                            <div class="col-lg-12 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Select Currency</label>
-                                    <input type="text" class="form-control" placeholder="Currency Name" required="" value="{{$payoutmethod->currency}}" name="currency">
-
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="currency_id">{{ __('Select Currency') }}</label>
+                            <select name="currency_id" id="currency_id" class="form-control" required>
+                                <option value="">-{{ __('Select') }}-</option>
+                                @foreach ($currencies as $currency)
+                                <option @selected($currency->id == $payoutmethod->currency_id) value="{{ $currency->id }}">{{ $currency->name. " (".$currency->rate.")" }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -69,14 +69,14 @@
                         </div>
                         <!--- Transaction Charge Fixed --->
                         <div class="form-row">
-                            <div class="transaction_fixed col-sm-12 d-none" >
+                            <div class="transaction_fixed col-sm-12" style="display: none;" >
                                 <div class="form-group">
                                     <label>Fixed Amount</label>
                                     <input type="number" class="form-control" value="{{$payoutmethod->fixed_charge}}" name="fixed_charge" placeholder="Fixed Amount">
                                 </div>
                             </div>
                             <!--- Transaction Charge percentage --->
-                            <div class="transaction_percentage col-sm-12 d-none" >
+                            <div class="transaction_percentage col-sm-12" style="display: none;" >
                                 <div class="form-group">
                                     <label>Percentage Amount</label>
                                     <input type="number" class="form-control" value="{{$payoutmethod->percent_charge}}" name="percent_charge" placeholder="Percentage Amount">
@@ -189,7 +189,6 @@
     <script src="{{ asset('plugins/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>
     <script>
-        "use strict";
         $( document ).ready(function() {
             let charge_type = $('#charge_type').val()
             if(charge_type == 'fixed'){

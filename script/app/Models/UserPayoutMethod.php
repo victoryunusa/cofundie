@@ -14,13 +14,4 @@ class UserPayoutMethod extends Model
         'payout_infos',
         'payout_method_id',
     ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'payout_infos' => 'json',
-    ];
 }

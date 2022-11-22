@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('payout_methods', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('currency_id')->constrained()->cascadeOnDelete();
             $table->string('name')->nullable();
             $table->string('image')->nullable();
             $table->double('min_limit', 2)->nullable();
             $table->double('max_limit', 2)->default(0);
+            $table->double('rate', 2)->default(0);
+            
             $table->string('delay')->nullable();
             $table->double('fixed_charge', 2)->nullable();
-            $table->string('currency')->nullable();
-            $table->double('rate', 2)->nullable();
             $table->double('percent_charge', 2)->nullable();
             $table->json('data')->nullable();
             $table->text('instruction')->nullable();

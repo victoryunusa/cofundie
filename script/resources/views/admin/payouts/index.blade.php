@@ -79,12 +79,12 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ optional($payout->payout_method)->name }}</td>
+                                                <td>{{ optional($payout->method)->name }}</td>
                                                 <td>{{ date('d M y', strtotime($payout->created_at)) }}</td>
                                                 <td>{{ currency_format($payout->amount) }}</td>
                                                 <td>{{ currency_format($payout->charge) }}</td>
                                                 <td>{{ currency_format($payout->amount - $payout->charge) }}</td>
-                                                <td>{{ $payout->currency }}</td>
+                                                <td>{{ $payout->currency->code ?? '' }}</td>
                                                 <td>
                                                     @if ($payout->status == 'pending')
                                                         <span class="badge badge-warning">{{ __('Pending') }}</span>
@@ -101,22 +101,10 @@
                                                         {{ __('Action') }}
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item has-icon" href="{{ url('/admin/payouts',$payout->id) }}">
-                                                            <i class="fa fa-eye"></i>
+                                                        <a class="dropdown-item" href="{{ route('admin.payouts.show', $payout->id) }}">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
                                                             {{ __('View') }}
                                                         </a>
-                                                        @if ($payout->status != 'approved')
-                                                        <a class="dropdown-item has-icon action-confirm" href="javascript:void(0)" data-action="{{ route('admin.payouts.approved', ['payout' => $payout->id]) }}" data-icon="success" data-text="You want to approve this?">
-                                                            <i class="fa fa-check"></i>
-                                                            {{ __('Approve') }}
-                                                        </a>
-                                                        @endif
-                                                        @if ($payout->status != 'rejected')
-                                                        <a class="dropdown-item has-icon action-confirm" href="javascript:void(0)" data-action="{{ route('admin.payouts.reject', ['payout' => $payout->id]) }}" data-icon="warning" data-text="You want to reject this?">
-                                                            <i class="fa fa-ban"></i>
-                                                            {{ __('Reject') }}
-                                                        </a>
-                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

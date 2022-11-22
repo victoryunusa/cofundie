@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Currency;
 use App\Models\PayoutMethod;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,8 @@ class PayoutMethodController extends Controller
      */
     public function create()
     {
-        return view('admin.payout-methods.create');
+        $currencies = Currency::latest()->get();
+        return view('admin.payout-methods.create', compact('currencies'));
     }
 
     /**
@@ -46,28 +48,13 @@ class PayoutMethodController extends Controller
             'name' => ['required', 'string'],
             'rate' => ['required', 'numeric', 'gt:0'],
             'delay' => ['required', 'numeric'],
-            'currency' => ['required', 'string'],
+            'currency_id' => ['required', 'string'],
             'min_limit' => ['required', 'gt:0'],
             'max_limit' => ['required', 'after_or_equal:min_limit'],
             'fixed_charge' => ['nullable', 'gt:0'],
             'percent_charge' => ['nullable', 'between:0,100'],
             'instruction' => ['required', 'string'],
-            'charge_type' => ['required', 'in:fixed,percentage'],
         ]);
-
-        if($request->charge_type == 'fixed')
-        {
-            $request->validate([
-                'fixed_charge' => ['required', 'gt:0'],
-            ]);
-        }
-
-        if($request->charge_type == 'percentage')
-        {
-            $request->validate([
-                'percent_charge' => ['required', 'between:0,100'],
-            ]);
-        }
 
         $data = json_encode($request->inputs);
         PayoutMethod::create($request->all() + [
@@ -98,8 +85,9 @@ class PayoutMethodController extends Controller
      */
     public function edit($id)
     {
+        $currencies = Currency::latest()->get();
         $payoutmethod = PayoutMethod::find($id);
-        return view('admin.payout-methods.edit', compact('payoutmethod'));
+        return view('admin.payout-methods.edit', compact('payoutmethod', 'currencies'));
     }
 
     /**
@@ -115,7 +103,7 @@ class PayoutMethodController extends Controller
             'name' => ['required', 'string'],
             'rate' => ['required', 'numeric', 'gt:0'],
             'delay' => ['required', 'numeric'],
-            'currency' => ['required', 'string'],
+            'currency_id' => ['required', 'string'],
             'min_limit' => ['required', 'gt:0'],
             'max_limit' => ['required', 'after_or_equal:min_limit'],
             'fixed_charge' => ['nullable', 'gt:0'],

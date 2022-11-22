@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $data['investments'] = Investment::with('user', 'project')->latest()->limit(10)->get();
         $data['supports'] = Support::with('user')->whereStatus(0)->latest()->limit(10)->get();
         $data['deposits'] = Deposit::whereStatus(2)->latest()->limit(10)->get();
-        $data['withdraws'] = Payout::with('payout_method')->whereStatus("pending")->latest()->limit(10)->get();
+        $data['withdraws'] = Payout::with('method')->whereStatus("pending")->latest()->limit(10)->get();
         return view('admin.dashboard', $data);
     }
 

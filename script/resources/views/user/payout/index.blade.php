@@ -38,10 +38,18 @@
         <div class="col-sm-6">
             <div class="card custom-border">
                 <div class="card-body">
-                    <h2 class="section-title mb-3">{{ __('Receive payments directly with ') . $method->name }}</h2>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between p-1">
+                            <h3 class="section-title font-weight-bold">{{ __('Receive payments directly with '.$method->name) }}</h3>
+                            @if ($method->usermethod)
+                            <h3> {{ $method->currency->name ?? '' }} </h3>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="{{ $method->usermethod ? 'text-primary':'text-pink' }}">{{ $method->usermethod ? __('Account connected'):__('Account not connected') }}</h4>
+                            <h5>{{ $method->usermethod ? __('Account connected'):__('Account not connected') }}</h5>
                         </div>
                         @if ($method->usermethod)
                         <div class="col-4 text-right">
@@ -49,10 +57,20 @@
                         </div>
                         @endif
                     </div>
-                    <a class="btn btn-primary btn-lg rounded btn-sm mt-2" href="{{ $method->usermethod ? route('user.payout.make-payout', $method->id):route('user.payout.setup', $method->id) }}">
-                        {{ $method->usermethod ? __('Make payout') : __('Set up') }}
-                        <i class="fas fa-angle-double-right mt-1"></i>
-                    </a>
+                    @if ($method->data && $method->usermethod && optional($method->usermethod)->payout_infos == null)
+                        <a class="btn btn-warning btn-lg rounded btn-sm mt-2" href="{{ route('user.payout.edit', $method->id) }}">
+                            {{ __('Please edit with your credintials') }}
+                        </a>
+                    @elseif ($method->usermethod)
+                        <a class="btn btn-primary btn-lg rounded btn-sm mt-2" href="{{ route('user.payout.make-payout', $method->id) }}">
+                            {{ __('Make payout') }}
+                        </a>
+                    @endif
+                    @if (!$method->usermethod)
+                        <a class="btn btn-primary btn-lg rounded btn-sm mt-2" href="{{ route('user.payout.setup', $method->id) }}">
+                            {{ __('Set up') }}
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -60,3 +78,10 @@
     </div>
 @endsection
 
+@push('css')
+    <style>
+        .custom-border {
+            border-radius: 1.5rem !important;
+        }
+    </style>
+@endpush

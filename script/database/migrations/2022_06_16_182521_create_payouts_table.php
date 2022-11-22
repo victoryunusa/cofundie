@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('payouts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('currency_id')->constrained()->cascadeOnDelete();
             $table->foreignId('payout_method_id')->nullable()->constrained()->cascadeOnDelete(); //TODO:: maybe delete by project manager
             $table->double('amount')->nullable();
             $table->integer('charge');
-            $table->string('currency');
             $table->text('comment')->nullable();
             $table->string('status')->default('pending'); //pending, completed, failed
             $table->timestamps();

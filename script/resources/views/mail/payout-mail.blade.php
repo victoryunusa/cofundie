@@ -13,7 +13,7 @@
         <tr>
             <th>{{ $payout->amount }}</th>
             <th>{{ $payout->charge }}</th>
-            <th>{{ $payout->currency }}</th>
+            <th>{{ $payout->currency->name ?? '' }}</th>
         </tr>
     </tbody>
 </table>

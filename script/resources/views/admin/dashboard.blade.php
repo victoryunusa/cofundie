@@ -294,12 +294,12 @@
                             @foreach ($withdraws as $withdraw)
                                 <tr id="row4">
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ optional($withdraw->payout_method)->name }}</td>
+                                    <td>{{ optional($withdraw->method)->name }}</td>
                                     <td>{{ date('d M y', strtotime($withdraw->created_at)) }}</td>
                                     <td>{{ currency_format($withdraw->amount) }}</td>
                                     <td>{{ currency_format($withdraw->charge) }}</td>
                                     <td>{{ currency_format($withdraw->amount - $withdraw->charge) }}</td>
-                                    <td>{{ $withdraw->currency }}</td>
+                                    <td>{{ $withdraw->currency->name ?? '' }}</td>
                                     <td>
                                         @if ($withdraw->status == 'pending')
                                             <span class="badge badge-warning">{{ __('Pending') }}</span>
