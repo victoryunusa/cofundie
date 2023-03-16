@@ -79,6 +79,10 @@ class Cluster extends \Google\Collection
   /**
    * @var string
    */
+  public $etag;
+  /**
+   * @var string
+   */
   public $expireTime;
   /**
    * @var string
@@ -470,6 +474,20 @@ class Cluster extends \Google\Collection
   public function getEndpoint()
   {
     return $this->endpoint;
+  }
+  /**
+   * @param string
+   */
+  public function setEtag($etag)
+  {
+    $this->etag = $etag;
+  }
+  /**
+   * @return string
+   */
+  public function getEtag()
+  {
+    return $this->etag;
   }
   /**
    * @param string

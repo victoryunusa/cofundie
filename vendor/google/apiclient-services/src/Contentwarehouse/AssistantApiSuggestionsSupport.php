@@ -61,6 +61,10 @@ class AssistantApiSuggestionsSupport extends \Google\Collection
   /**
    * @var bool
    */
+  public $multiStepTrySayingSupported;
+  /**
+   * @var bool
+   */
   public $ruleIdInExecutionContextSupported;
   /**
    * @var bool
@@ -216,6 +220,20 @@ class AssistantApiSuggestionsSupport extends \Google\Collection
   public function getFeatureSpecificAppActionsNotificationSupported()
   {
     return $this->featureSpecificAppActionsNotificationSupported;
+  }
+  /**
+   * @param bool
+   */
+  public function setMultiStepTrySayingSupported($multiStepTrySayingSupported)
+  {
+    $this->multiStepTrySayingSupported = $multiStepTrySayingSupported;
+  }
+  /**
+   * @return bool
+   */
+  public function getMultiStepTrySayingSupported()
+  {
+    return $this->multiStepTrySayingSupported;
   }
   /**
    * @param bool

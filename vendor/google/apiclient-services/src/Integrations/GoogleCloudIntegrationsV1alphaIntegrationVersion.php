@@ -32,6 +32,8 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion extends \Google\Collectio
    * @var string
    */
   public $description;
+  protected $errorCatcherConfigsType = GoogleCloudIntegrationsV1alphaErrorCatcherConfig::class;
+  protected $errorCatcherConfigsDataType = 'array';
   protected $integrationParametersType = GoogleCloudIntegrationsV1alphaIntegrationParameter::class;
   protected $integrationParametersDataType = 'array';
   protected $integrationParametersInternalType = EnterpriseCrmFrontendsEventbusProtoWorkflowParameters::class;
@@ -128,6 +130,20 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion extends \Google\Collectio
   public function getDescription()
   {
     return $this->description;
+  }
+  /**
+   * @param GoogleCloudIntegrationsV1alphaErrorCatcherConfig[]
+   */
+  public function setErrorCatcherConfigs($errorCatcherConfigs)
+  {
+    $this->errorCatcherConfigs = $errorCatcherConfigs;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaErrorCatcherConfig[]
+   */
+  public function getErrorCatcherConfigs()
+  {
+    return $this->errorCatcherConfigs;
   }
   /**
    * @param GoogleCloudIntegrationsV1alphaIntegrationParameter[]

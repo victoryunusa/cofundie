@@ -14,15 +14,15 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
     /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+     |--------------------------------------------------------------------------
+     | Login Controller
+     |--------------------------------------------------------------------------
+     |
+     | This controller handles authenticating users for the application and
+     | redirecting them to your home screen. The controller uses a trait
+     | to conveniently provide its functionality to your applications.
+     |
+     */
 
     use AuthenticatesUsers;
 
@@ -43,6 +43,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        // $currencies = Currency::whereStatus(1)
+        //     ->groupBy('country_name')
+        //     ->pluck('country_name', 'id');
+        return view('auth.login');
+    }
+
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
@@ -55,9 +63,9 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? response()->json([
-                'message' => __('Logged In Successfully'),
-                'redirect' => $this->redirectPath()
-            ])
+            'message' => __('Logged In Successfully'),
+            'redirect' => $this->redirectPath()
+        ])
             : redirect()->intended($this->redirectPath());
     }
 
@@ -72,7 +80,8 @@ class LoginController extends Controller
 
         if ($auth->role == 'admin') {
             return $this->redirectTo = route('admin.dashboard.index');
-        } elseif ($auth->role == 'user') {
+        }
+        elseif ($auth->role == 'user') {
             return $this->redirectTo = route('user.dashboard.index');
         }
 
@@ -90,9 +99,9 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([
-                'message' => __('Logged Out Successfully'),
-                'redirect' => url('/')
-            ], 204)
+            'message' => __('Logged Out Successfully'),
+            'redirect' => url('/')
+        ], 204)
             : redirect('/');
     }
 

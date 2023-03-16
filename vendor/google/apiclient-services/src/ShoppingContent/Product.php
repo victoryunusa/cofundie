@@ -188,6 +188,10 @@ class Product extends \Google\Collection
    */
   public $kind;
   /**
+   * @var string[]
+   */
+  public $lifestyleImageLinks;
+  /**
    * @var string
    */
   public $link;
@@ -955,6 +959,20 @@ class Product extends \Google\Collection
   public function getKind()
   {
     return $this->kind;
+  }
+  /**
+   * @param string[]
+   */
+  public function setLifestyleImageLinks($lifestyleImageLinks)
+  {
+    $this->lifestyleImageLinks = $lifestyleImageLinks;
+  }
+  /**
+   * @return string[]
+   */
+  public function getLifestyleImageLinks()
+  {
+    return $this->lifestyleImageLinks;
   }
   /**
    * @param string

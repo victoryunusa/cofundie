@@ -38,6 +38,10 @@ class Volume extends \Google\Model
   /**
    * @var string
    */
+  public $expireTime;
+  /**
+   * @var string
+   */
   public $id;
   /**
    * @var string[]
@@ -100,7 +104,15 @@ class Volume extends \Google\Model
   /**
    * @var string
    */
+  public $storageAggregatePool;
+  /**
+   * @var string
+   */
   public $storageType;
+  /**
+   * @var string
+   */
+  public $workloadProfile;
 
   /**
    * @param string
@@ -157,6 +169,20 @@ class Volume extends \Google\Model
   public function getEmergencySizeGib()
   {
     return $this->emergencySizeGib;
+  }
+  /**
+   * @param string
+   */
+  public function setExpireTime($expireTime)
+  {
+    $this->expireTime = $expireTime;
+  }
+  /**
+   * @return string
+   */
+  public function getExpireTime()
+  {
+    return $this->expireTime;
   }
   /**
    * @param string
@@ -385,6 +411,20 @@ class Volume extends \Google\Model
   /**
    * @param string
    */
+  public function setStorageAggregatePool($storageAggregatePool)
+  {
+    $this->storageAggregatePool = $storageAggregatePool;
+  }
+  /**
+   * @return string
+   */
+  public function getStorageAggregatePool()
+  {
+    return $this->storageAggregatePool;
+  }
+  /**
+   * @param string
+   */
   public function setStorageType($storageType)
   {
     $this->storageType = $storageType;
@@ -395,6 +435,20 @@ class Volume extends \Google\Model
   public function getStorageType()
   {
     return $this->storageType;
+  }
+  /**
+   * @param string
+   */
+  public function setWorkloadProfile($workloadProfile)
+  {
+    $this->workloadProfile = $workloadProfile;
+  }
+  /**
+   * @return string
+   */
+  public function getWorkloadProfile()
+  {
+    return $this->workloadProfile;
   }
 }
 

@@ -23,7 +23,15 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
    * @var float
    */
   public $bindingSetAuis;
+  /**
+   * @var float
+   */
+  public $bindingSetPauis;
   public $calibratedParsingScore;
+  /**
+   * @var bool
+   */
+  public $deepMediaDominant;
   /**
    * @var bool
    */
@@ -32,6 +40,10 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
    * @var float
    */
   public $effectiveArgSpanLength;
+  /**
+   * @var bool
+   */
+  public $fulfillableDominantMedia;
   public $groundabilityScore;
   protected $groundingProviderFeaturesType = AssistantGroundingRankerGroundingProviderFeatures::class;
   protected $groundingProviderFeaturesDataType = '';
@@ -50,13 +62,24 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
    */
   public $isFeasible;
   /**
+   * @var bool
+   */
+  public $isFullyGrounded;
+  /**
+   * @var bool
+   */
+  public $isPlayGenericMusic;
+  /**
    * @var int
    */
   public $kscorerRank;
+  protected $laaFeaturesType = AssistantGroundingRankerLaaFeatures::class;
+  protected $laaFeaturesDataType = '';
   /**
    * @var bool
    */
   public $maskCandidateLevelFeatures;
+  public $maxHgrScoreAcrossBindingSets;
   /**
    * @var float
    */
@@ -100,6 +123,20 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
   {
     return $this->bindingSetAuis;
   }
+  /**
+   * @param float
+   */
+  public function setBindingSetPauis($bindingSetPauis)
+  {
+    $this->bindingSetPauis = $bindingSetPauis;
+  }
+  /**
+   * @return float
+   */
+  public function getBindingSetPauis()
+  {
+    return $this->bindingSetPauis;
+  }
   public function setCalibratedParsingScore($calibratedParsingScore)
   {
     $this->calibratedParsingScore = $calibratedParsingScore;
@@ -107,6 +144,20 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
   public function getCalibratedParsingScore()
   {
     return $this->calibratedParsingScore;
+  }
+  /**
+   * @param bool
+   */
+  public function setDeepMediaDominant($deepMediaDominant)
+  {
+    $this->deepMediaDominant = $deepMediaDominant;
+  }
+  /**
+   * @return bool
+   */
+  public function getDeepMediaDominant()
+  {
+    return $this->deepMediaDominant;
   }
   /**
    * @param bool
@@ -135,6 +186,20 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
   public function getEffectiveArgSpanLength()
   {
     return $this->effectiveArgSpanLength;
+  }
+  /**
+   * @param bool
+   */
+  public function setFulfillableDominantMedia($fulfillableDominantMedia)
+  {
+    $this->fulfillableDominantMedia = $fulfillableDominantMedia;
+  }
+  /**
+   * @return bool
+   */
+  public function getFulfillableDominantMedia()
+  {
+    return $this->fulfillableDominantMedia;
   }
   public function setGroundabilityScore($groundabilityScore)
   {
@@ -217,6 +282,34 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
     return $this->isFeasible;
   }
   /**
+   * @param bool
+   */
+  public function setIsFullyGrounded($isFullyGrounded)
+  {
+    $this->isFullyGrounded = $isFullyGrounded;
+  }
+  /**
+   * @return bool
+   */
+  public function getIsFullyGrounded()
+  {
+    return $this->isFullyGrounded;
+  }
+  /**
+   * @param bool
+   */
+  public function setIsPlayGenericMusic($isPlayGenericMusic)
+  {
+    $this->isPlayGenericMusic = $isPlayGenericMusic;
+  }
+  /**
+   * @return bool
+   */
+  public function getIsPlayGenericMusic()
+  {
+    return $this->isPlayGenericMusic;
+  }
+  /**
    * @param int
    */
   public function setKscorerRank($kscorerRank)
@@ -231,6 +324,20 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
     return $this->kscorerRank;
   }
   /**
+   * @param AssistantGroundingRankerLaaFeatures
+   */
+  public function setLaaFeatures(AssistantGroundingRankerLaaFeatures $laaFeatures)
+  {
+    $this->laaFeatures = $laaFeatures;
+  }
+  /**
+   * @return AssistantGroundingRankerLaaFeatures
+   */
+  public function getLaaFeatures()
+  {
+    return $this->laaFeatures;
+  }
+  /**
    * @param bool
    */
   public function setMaskCandidateLevelFeatures($maskCandidateLevelFeatures)
@@ -243,6 +350,14 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals extends \Google\Model
   public function getMaskCandidateLevelFeatures()
   {
     return $this->maskCandidateLevelFeatures;
+  }
+  public function setMaxHgrScoreAcrossBindingSets($maxHgrScoreAcrossBindingSets)
+  {
+    $this->maxHgrScoreAcrossBindingSets = $maxHgrScoreAcrossBindingSets;
+  }
+  public function getMaxHgrScoreAcrossBindingSets()
+  {
+    return $this->maxHgrScoreAcrossBindingSets;
   }
   /**
    * @param float

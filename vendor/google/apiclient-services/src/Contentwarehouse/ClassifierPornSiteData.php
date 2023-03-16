@@ -37,6 +37,10 @@ class ClassifierPornSiteData extends \Google\Collection
    */
   public $numberOfPedoPages;
   /**
+   * @var string
+   */
+  public $site;
+  /**
    * @var float
    */
   public $sitePornRatio;
@@ -104,6 +108,20 @@ class ClassifierPornSiteData extends \Google\Collection
   public function getNumberOfPedoPages()
   {
     return $this->numberOfPedoPages;
+  }
+  /**
+   * @param string
+   */
+  public function setSite($site)
+  {
+    $this->site = $site;
+  }
+  /**
+   * @return string
+   */
+  public function getSite()
+  {
+    return $this->site;
   }
   /**
    * @param float
